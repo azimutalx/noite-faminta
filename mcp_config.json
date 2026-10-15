@@ -1,0 +1,53 @@
+{
+  "mcpServers": {
+    "DiretorFrontendUI": {
+      "command": "C:/mcp-servers/venv/Scripts/python.exe",
+      "args": ["C:/mcp-servers/frontend_mcp.py"],
+      "env": {
+        "PYTHONUNBUFFERED": "1"
+      }
+    },
+    "InspetorVisualBrowser": {
+      "command": "C:/mcp-servers/venv/Scripts/python.exe",
+      "args": ["C:/mcp-servers/browser_vision_mcp.py"],
+      "env": {
+        "PYTHONUNBUFFERED": "1"
+      }
+    },
+    "GuardiaoQASec": {
+      "command": "C:/mcp-servers/venv/Scripts/python.exe",
+      "args": ["C:/mcp-servers/qa_sec_mcp.py"],
+      "env": {
+        "PYTHONUNBUFFERED": "1"
+      }
+    },
+    "ArquitetoUniversal": {
+      "command": "C:/mcp-servers/venv/Scripts/python.exe",
+      "args": ["C:/mcp-servers/arquiteto_mcp.py"],
+      "env": {
+        "PYTHONUNBUFFERED": "1"
+      }
+    },
+    "AuditorObservabilidade": {
+      "command": "C:/mcp-servers/venv/Scripts/python.exe",
+      "args": ["C:/mcp-servers/observability_mcp.py"],
+      "env": {
+        "PYTHONUNBUFFERED": "1"
+      }
+    },
+    "EngenheiroDevOpsIaC": {
+      "command": "C:/mcp-servers/venv/Scripts/python.exe",
+      "args": ["C:/mcp-servers/devops_iac_mcp.py"],
+      "env": {
+        "PYTHONUNBUFFERED": "1"
+      }
+    },
+    "InspetorEstadoSchema": {
+      "command": "C:/mcp-servers/venv/Scripts/python.exe",
+      "args": ["C:/mcp-servers/db_state_mcp.py"],
+      "env": {
+        "PYTHONUNBUFFERED": "1"
+      }
+    }
+  }
+}

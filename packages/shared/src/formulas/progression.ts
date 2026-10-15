@@ -1,3 +1,5 @@
+import { CharacterProfile } from '../types/character.js';
+
 export interface StatTrainingCostResult {
   goldCost: number;
   totalPointsAfterTraining: number;
@@ -29,14 +31,61 @@ export function calculateMaxHealth(vitality: number, level: number): number {
   return 100 + (safeVitality * 15) + (safeLevel * 20);
 }
 
+export function calculateTotalMaxHealth(vitality: number, level: number, throneRoomLevel = 0): number {
+  const base = calculateMaxHealth(vitality, level);
+  const chamberBonus = Math.max(0, throneRoomLevel) * 40;
+  return base + chamberBonus;
+}
+
 export function calculateMaxStamina(hideoutLevel: number): number {
   const safeHideout = Math.max(1, hideoutLevel);
   return 100 + ((safeHideout - 1) * 10);
 }
 
+export function calculateTotalMaxStamina(hideoutLevel: number, ritualSanctumLevel = 0): number {
+  const base = calculateMaxStamina(hideoutLevel);
+  const chamberBonus = Math.max(0, ritualSanctumLevel) * 15;
+  return base + chamberBonus;
+}
+
 export function calculateVaultLimit(hideoutLevel: number): number {
   const safeHideout = Math.max(1, hideoutLevel);
   return 5000 + ((safeHideout - 1) * 10000);
+}
+
+export function calculateTotalVaultLimit(hideoutLevel: number, catacombVaultLevel = 0): number {
+  const base = calculateVaultLimit(hideoutLevel);
+  const chamberBonus = Math.max(0, catacombVaultLevel) * 15000;
+  return base + chamberBonus;
+}
+
+export function calculateMercenaryCombatPower(stats: { strength: number; agility: number; occultism: number }): number {
+  return (stats.strength * 2) + (stats.agility * 2) + (stats.occultism * 3);
+}
+
+export function normalizeCharacterStats(character: CharacterProfile): CharacterProfile {
+  const rooms = character.hideoutRooms ?? {};
+  const maxHealth = calculateTotalMaxHealth(
+    character.stats.vitality,
+    character.level,
+    rooms.throne_sarcophagus ?? 0
+  );
+  const maxStamina = calculateTotalMaxStamina(
+    character.hideoutLevel,
+    rooms.ritual_sanctum ?? 0
+  );
+  const vaultGoldLimit = calculateTotalVaultLimit(
+    character.hideoutLevel,
+    rooms.catacomb_vault ?? 0
+  );
+  return {
+    ...character,
+    maxHealth,
+    health: Math.min(character.health, maxHealth),
+    maxStamina,
+    stamina: Math.min(character.stamina, maxStamina),
+    vaultGoldLimit
+  };
 }
 
 export function calculateStatTrainingCost(currentStatValue: number, pointsToTrain: number): StatTrainingCostResult {

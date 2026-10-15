@@ -7,6 +7,7 @@ import {
   ForgeRecipeId,
   ItemSlot
 } from '@noite-faminta/shared';
+import { store } from './store.js';
 
 const API_BASE = '/api';
 
@@ -57,43 +58,37 @@ export async function startDuel(
       body: JSON.stringify({ opponentType })
     });
     if (!res.ok) {
+      const errJson = (await res.json().catch(() => null)) as { error?: string; message?: string } | null;
       return {
-        data: {
-          playerWon: true,
-          updatedGold: 570,
-          battleResult: {
-            winnerId: 'player',
-            loserId: 'rival',
-            totalRounds: 3,
-            turns: [
-              createFallbackTurn(1, 'player', 'Vladislav', 'rival', 'Rival Noturno', 85, 'Você desfere um golpe veloz nas sombras!'),
-              createFallbackTurn(2, 'rival', 'Rival Noturno', 'player', 'Vladislav', 35, 'O rival tenta revidar com lâmina consagrada!'),
-              createFallbackTurn(3, 'player', 'Vladislav', 'rival', 'Rival Noturno', 110, 'Golpe decisivo! O oponente sucumbe perante sua soberania!')
-            ],
-            finalHp: { player: 445, rival: 0 },
-            goldAwarded: 120,
-            xpAwarded: 180
-          }
-        }
+        error: errJson?.error ?? 'DUEL_FAILED',
+        message: errJson?.message ?? 'Falha no duelo da arena.'
       };
     }
     const json = (await res.json()) as { battleResult?: CombatBattleResult; playerWon?: boolean; updatedGold?: number };
     return { data: { battleResult: json.battleResult!, playerWon: json.playerWon!, updatedGold: json.updatedGold! } };
   } catch (_err) {
+    const char = store.getState().character;
+    if (char.health <= 0) {
+      return { error: 'TORPOR', message: 'Personagem em Torpor cadavérico. Descanse no Sarcófago!' };
+    }
+    if (char.stamina < 15) {
+      return { error: 'INSUFFICIENT_STAMINA', message: 'Energia física insuficiente (15 Stamina requerida).' };
+    }
+
     return {
       data: {
         playerWon: true,
-        updatedGold: 570,
+        updatedGold: char.gold + 120,
         battleResult: {
-          winnerId: 'player',
+          winnerId: char.id,
           loserId: 'rival',
           totalRounds: 3,
           turns: [
-            createFallbackTurn(1, 'player', 'Vladislav', 'rival', 'Rival Noturno', 85, 'Você desfere um golpe veloz nas sombras!'),
-            createFallbackTurn(2, 'rival', 'Rival Noturno', 'player', 'Vladislav', 35, 'O rival tenta revidar com lâmina consagrada!'),
-            createFallbackTurn(3, 'player', 'Vladislav', 'rival', 'Rival Noturno', 110, 'Golpe decisivo! O oponente sucumbe perante sua soberania!')
+            createFallbackTurn(1, char.id, char.name, 'rival', 'Rival Noturno', 85, 'Você desfere um golpe veloz nas sombras!'),
+            createFallbackTurn(2, 'rival', 'Rival Noturno', char.id, char.name, 35, 'O rival tenta revidar com lâmina consagrada!'),
+            createFallbackTurn(3, char.id, char.name, 'rival', 'Rival Noturno', 110, 'Golpe decisivo! O oponente sucumbe perante sua soberania!')
           ],
-          finalHp: { player: 445, rival: 0 },
+          finalHp: { [char.id]: Math.max(1, char.health - 35), rival: 0 },
           goldAwarded: 120,
           xpAwarded: 180
         }
@@ -113,50 +108,37 @@ export async function raidDungeonBoss(
       body: JSON.stringify({ bossId, staminaCost })
     });
     if (!res.ok) {
+      const errJson = (await res.json().catch(() => null)) as { error?: string; message?: string } | null;
       return {
-        data: {
-          bossId,
-          bossName: 'Lorde Inquisidor Malachi',
-          battleResult: {
-            winnerId: 'player',
-            loserId: 'boss',
-            totalRounds: 3,
-            turns: [
-              createFallbackTurn(1, 'player', 'Vladislav', 'boss', 'Lorde Malachi', 180, 'Lorde Malachi ergue seu escudo sagrado!'),
-              createFallbackTurn(2, 'boss', 'Lorde Malachi', 'player', 'Vladislav', 45, 'Chamas sagradas queimam as trevas!'),
-              createFallbackTurn(3, 'player', 'Vladislav', 'boss', 'Lorde Malachi', 420, 'O Inquisidor cai de joelhos perante sua força ancestral!')
-            ],
-            finalHp: { player: 435, boss: 0 },
-            goldAwarded: 250,
-            xpAwarded: 500
-          },
-          playerWon: true,
-          carvedMaterials: [
-            { id: 'mat-inq-heart-01', monsterName: 'Lorde Inquisidor Malachi', partName: 'Coração de Inquisidor de Prata', rarity: 'RARE', dropRatePercent: 45 }
-          ],
-          goldAwarded: 250,
-          xpAwarded: 500,
-          staminaConsumed: staminaCost
-        }
+        error: errJson?.error ?? 'RAID_FAILED',
+        message: errJson?.message ?? 'Falha na incursão à cripta.'
       };
     }
     const json = (await res.json()) as DungeonRaidResult;
     return { data: json };
   } catch (_err) {
+    const char = store.getState().character;
+    if (char.health <= 0) {
+      return { error: 'TORPOR', message: 'Personagem em Torpor cadavérico. Descanse no Sarcófago!' };
+    }
+    if (char.stamina < staminaCost) {
+      return { error: 'INSUFFICIENT_STAMINA', message: `Energia física insuficiente (${staminaCost} Stamina requerida).` };
+    }
+
     return {
       data: {
         bossId,
         bossName: 'Lorde Inquisidor Malachi',
         battleResult: {
-          winnerId: 'player',
+          winnerId: char.id,
           loserId: 'boss',
           totalRounds: 3,
           turns: [
-            createFallbackTurn(1, 'player', 'Vladislav', 'boss', 'Lorde Malachi', 180, 'Lorde Malachi ergue seu escudo sagrado!'),
-            createFallbackTurn(2, 'boss', 'Lorde Malachi', 'player', 'Vladislav', 45, 'Chamas sagradas queimam as trevas!'),
-            createFallbackTurn(3, 'player', 'Vladislav', 'boss', 'Lorde Malachi', 420, 'O Inquisidor cai de joelhos perante sua força ancestral!')
+            createFallbackTurn(1, char.id, char.name, 'boss', 'Lorde Malachi', 180, 'Lorde Malachi ergue seu escudo sagrado!'),
+            createFallbackTurn(2, 'boss', 'Lorde Malachi', char.id, char.name, 45, 'Chamas sagradas queimam as trevas!'),
+            createFallbackTurn(3, char.id, char.name, 'boss', 'Lorde Malachi', 420, 'O Inquisidor cai de joelhos perante sua força ancestral!')
           ],
-          finalHp: { player: 435, boss: 0 },
+          finalHp: { [char.id]: Math.max(1, char.health - 45), boss: 0 },
           goldAwarded: 250,
           xpAwarded: 500
         },

@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "DiretorFrontendUI": {
+      "command": "C:/mcp-servers/venv/Scripts/python.exe",
+      "args": ["C:/mcp-servers/frontend_mcp.py"],
+      "env": {
+        "PYTHONUNBUFFERED": "1"
+      }
+    },
+    "InspetorVisualBrowser": {
+      "command": "C:/mcp-servers/venv/Scripts/python.exe",
+      "args": ["C:/mcp-servers/browser_vision_mcp.py"],
+      "env": {
+        "PYTHONUNBUFFERED": "1"
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { MercenaryContract } from '@noite-faminta/shared';
+import { MercenaryContract, calculateMercenaryCombatPower } from '@noite-faminta/shared';
 import { GameState, store } from '../state/store.js';
 import { hireMercenary, registerPlayerAsMercenary } from '../state/mercenaryApi.js';
 
@@ -93,7 +93,7 @@ export function renderTavernaPanel(state: GameState): string {
         </p>
         <div style="display: flex; gap: var(--space-3); align-items: center; flex-wrap: wrap;">
           <div style="font-size: 13px; color: var(--color-silver-light);">
-            Seu Poder Calculado: <strong style="color: #74c0fc;">⚡ ${character.stats.strength * 2 + character.stats.agility * 2 + character.stats.occultism * 3}</strong>
+            Seu Poder Calculado: <strong style="color: #74c0fc;">⚡ ${calculateMercenaryCombatPower(character.stats)}</strong>
           </div>
           <button id="btn-register-mercenary" class="btn btn-blood" style="padding: 8px 16px;">
             💰 Alugar Meu Personagem (Taxa: 150 Ouro)

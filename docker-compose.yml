@@ -8,7 +8,7 @@ services:
     restart: unless-stopped
     environment:
       POSTGRES_USER: noite_admin
-      POSTGRES_PASSWORD: senha_local_dev
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-senha_local_dev}
       POSTGRES_DB: noite_faminta_db
     ports:
       - "127.0.0.1:5432:5432" # Vinculado apenas ao localhost por segurança

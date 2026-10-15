@@ -5,7 +5,9 @@ import {
   StartHuntSchema,
   calculateHuntingPower,
   resolveHunt,
-  HuntTargetType
+  HuntTargetType,
+  getPhysicalCondition,
+  canPerformAction
 } from '@noite-faminta/shared';
 import { withTransaction } from '../db/connection.js';
 
@@ -48,17 +50,12 @@ export async function huntingRoutes(fastify: FastifyInstance): Promise<void> {
       const character = charRes.rows[0];
       if (!character) return reply.status(404).send({ error: 'CHARACTER_NOT_FOUND' });
 
-      if (character.stamina < staminaCost) {
+      // Validação estrita de fadiga e torpor com base no Tagmar
+      const actionCheck = canPerformAction(character.stamina, character.health, staminaCost);
+      if (!actionCheck.allowed) {
         return reply.status(400).send({
-          error: 'INSUFFICIENT_STAMINA',
-          message: `Stamina insuficiente. Necessário: ${staminaCost}, Atual: ${character.stamina}`
-        });
-      }
-
-      if (character.health <= 0) {
-        return reply.status(400).send({
-          error: 'CHARACTER_EXHAUSTED',
-          message: 'Seu personagem está ferido demais para caçar. Recupere sua vitalidade no Refúgio.'
+          error: character.health <= 0 ? 'TORPOR' : 'INSUFFICIENT_STAMINA',
+          message: actionCheck.reason
         });
       }
 
@@ -73,8 +70,9 @@ export async function huntingRoutes(fastify: FastifyInstance): Promise<void> {
         character.level
       );
 
+      const condition = getPhysicalCondition(character.stamina, 100, character.health);
       const rollFactor = crypto.randomInt(0, 10000) / 10000;
-      const outcome = resolveHunt(playerPower, targetType as HuntTargetType, staminaCost, rollFactor);
+      const outcome = resolveHunt(playerPower, targetType as HuntTargetType, staminaCost, rollFactor, 0, condition);
 
       const currentGold = Number(character.gold);
       const balanceAfter = currentGold + outcome.goldEarned;

@@ -5,11 +5,40 @@ import { renderArvoreHibridaPanel, attachArvoreHibridaEvents } from './component
 import { renderMetropolePanel, attachMetropoleEvents } from './components/MetropolePanel.js';
 import { renderMasmorrasForjaPanel, attachMasmorrasForjaEvents } from './components/MasmorrasForjaPanel.js';
 import { renderTavernaPanel, attachTavernaEvents } from './components/TavernaPanel.js';
+import { setHtml } from './utils/dom.js';
 
-function renderApp(state: GameState): void {
-  const root = document.getElementById('app');
-  if (!root) return;
+let lastLogId: string | null = null;
 
+function ensureAppShell(root: HTMLElement): {
+  headerEl: HTMLElement;
+  tickerEl: HTMLElement;
+  mainEl: HTMLElement;
+  footerEl: HTMLElement;
+} {
+  let headerEl = root.querySelector<HTMLElement>('#app-header');
+  let tickerEl = root.querySelector<HTMLElement>('#app-ticker-container');
+  let mainEl = root.querySelector<HTMLElement>('#main-content');
+  let footerEl = root.querySelector<HTMLElement>('#app-footer');
+
+  if (!headerEl || !tickerEl || !mainEl || !footerEl) {
+    setHtml(root, `
+      <header id="app-header"></header>
+      <div id="app-ticker-container"></div>
+      <main id="main-content" style="flex: 1;"></main>
+      <footer id="app-footer" style="text-align: center; padding: var(--space-4) 0; font-size: 12px; color: var(--color-text-muted); border-top: 1px solid var(--color-border-subtle); margin-top: var(--space-6);">
+        <strong>NOITE FAMINTA: SANGUE & PRATA</strong> — MMORPG Idle Autoritativo | DevSecOps & Economia Segura
+      </footer>
+    `);
+    headerEl = root.querySelector<HTMLElement>('#app-header')!;
+    tickerEl = root.querySelector<HTMLElement>('#app-ticker-container')!;
+    mainEl = root.querySelector<HTMLElement>('#main-content')!;
+    footerEl = root.querySelector<HTMLElement>('#app-footer')!;
+  }
+
+  return { headerEl, tickerEl, mainEl, footerEl };
+}
+
+function renderPanelContent(mainEl: HTMLElement, state: GameState): void {
   let activePanelHtml = '';
   switch (state.activeTab) {
     case 'refugio':
@@ -29,40 +58,55 @@ function renderApp(state: GameState): void {
       break;
   }
 
-  root.innerHTML = `
-    ${renderHeader(state)}
-    <main id="main-content" style="flex: 1;">
-      ${state.logs[0] ? `
-        <div class="gothic-ticker-bar ${state.logs[0].type}">
-          <span style="opacity: 0.7;">[${state.logs[0].timestamp}]</span>
-          <span>${state.logs[0].text}</span>
-        </div>
-      ` : ''}
-      ${activePanelHtml}
-    </main>
-    <footer style="text-align: center; padding: var(--space-4) 0; font-size: 12px; color: var(--color-text-muted); border-top: 1px solid var(--color-border-subtle); margin-top: var(--space-6);">
-      <strong>NOITE FAMINTA: SANGUE & PRATA</strong> — MMORPG Idle Autoritativo | DevSecOps & Economia Segura
-    </footer>
-  `;
+  setHtml(mainEl, activePanelHtml);
 
-  attachHeaderEvents(root);
   if (state.activeTab === 'refugio') {
-    attachRefugioEvents(root);
+    attachRefugioEvents(mainEl);
   } else if (state.activeTab === 'arvore') {
-    attachArvoreHibridaEvents(root);
+    attachArvoreHibridaEvents(mainEl);
   } else if (state.activeTab === 'metropole') {
-    attachMetropoleEvents(root);
+    attachMetropoleEvents(mainEl);
   } else if (state.activeTab === 'masmorras') {
-    attachMasmorrasForjaEvents(root);
+    attachMasmorrasForjaEvents(mainEl);
   } else if (state.activeTab === 'taverna') {
-    attachTavernaEvents(root);
+    attachTavernaEvents(mainEl);
   }
 }
 
-// Inicialização e subscrição reativa
-const initial = store.getState();
-renderApp(initial);
+export function renderApp(state: GameState): void {
+  const root = document.getElementById('app');
+  if (!root) return;
 
-store.subscribe((newState) => {
-  renderApp(newState);
-});
+  const { headerEl, tickerEl, mainEl } = ensureAppShell(root);
+
+  // 1. Atualizar Cabeçalho HUD e Abas sem destruir o painel ativo
+  setHtml(headerEl, renderHeader(state));
+  attachHeaderEvents(headerEl);
+
+  // 2. Atualizar Ticker Gótico apenas se houver novo log
+  const currentTopLog = state.logs[0];
+  if (currentTopLog && currentTopLog.id !== lastLogId) {
+    lastLogId = currentTopLog.id;
+    setHtml(tickerEl, `
+      <div class="gothic-ticker-bar ${currentTopLog.type}">
+        <span style="opacity: 0.7;">[${currentTopLog.timestamp}]</span>
+        <span>${currentTopLog.text}</span>
+      </div>
+    `);
+  } else if (!currentTopLog) {
+    setHtml(tickerEl, '');
+  }
+
+  // 3. Atualizar Painel Ativo
+  renderPanelContent(mainEl, state);
+}
+
+// Inicialização e subscrição reativa
+if (typeof document !== 'undefined') {
+  const initial = store.getState();
+  renderApp(initial);
+
+  store.subscribe((newState) => {
+    renderApp(newState);
+  });
+}

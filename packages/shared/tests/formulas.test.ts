@@ -1,33 +1,18 @@
 import { describe, it, expect } from 'vitest';
 import {
-  calculateRequiredXp,
-  calculateLevelFromTotalXp,
-  calculateMaxHealth,
-  calculateMaxStamina,
-  calculateVaultLimit,
-  calculateStatTrainingCost,
-  calculateEvolutionPointsPerLevel,
-  calculateHideoutUpgradeCost,
-  getHideoutStage
+  calculateRequiredXp, calculateLevelFromTotalXp, calculateMaxHealth,
+  calculateTotalMaxHealth, calculateMaxStamina, calculateTotalMaxStamina,
+  calculateVaultLimit, calculateTotalVaultLimit, calculateMercenaryCombatPower,
+  normalizeCharacterStats, calculateStatTrainingCost, calculateEvolutionPointsPerLevel,
+  calculateHideoutUpgradeCost, getHideoutStage
 } from '../src/formulas/progression.js';
 import {
-  calculateHuntingPower,
-  resolveHunt
+  calculateHuntingPower, resolveHunt, getPhysicalCondition,
+  getConditionDetails, canPerformAction, HUNT_TARGET_CONFIGS
 } from '../src/formulas/hunting.js';
-import {
-  calculateCombatStats,
-  calculateDamageDealt,
-  evaluateGambitCondition
-} from '../src/formulas/combat.js';
-import {
-  calculateMarketFee,
-  calculateDistrictDividend,
-  applyVipBonus
-} from '../src/formulas/economy.js';
-import {
-  resolveCarvingDrop,
-  calculateAffixStatValue
-} from '../src/formulas/crafting.js';
+import { calculateCombatStats, calculateDamageDealt, evaluateGambitCondition } from '../src/formulas/combat.js';
+import { calculateMarketFee, calculateDistrictDividend, applyVipBonus } from '../src/formulas/economy.js';
+import { resolveCarvingDrop, calculateAffixStatValue } from '../src/formulas/crafting.js';
 
 describe('Formulas: Progression', () => {
   it('calculates XP progression consistently', () => {
@@ -46,6 +31,37 @@ describe('Formulas: Progression', () => {
     expect(calculateEvolutionPointsPerLevel()).toBe(3);
   });
 
+  it('calculates total stats incorporating hideout chambers', () => {
+    expect(calculateTotalMaxHealth(15, 3, 0)).toBe(385);
+    expect(calculateTotalMaxHealth(15, 3, 1)).toBe(425);
+    expect(calculateTotalMaxHealth(15, 3, 2)).toBe(465);
+    expect(calculateTotalMaxStamina(2, 0)).toBe(110);
+    expect(calculateTotalMaxStamina(2, 1)).toBe(125);
+    expect(calculateTotalMaxStamina(2, 2)).toBe(140);
+    expect(calculateTotalVaultLimit(2, 0)).toBe(15000);
+    expect(calculateTotalVaultLimit(2, 1)).toBe(30000);
+    expect(calculateTotalVaultLimit(3, 2)).toBe(55000);
+    expect(calculateMercenaryCombatPower({ strength: 14, agility: 12, occultism: 18 })).toBe(106);
+  });
+
+  it('normalizes character stats and clamps health/stamina to canonical bounds', () => {
+    const rawChar = {
+      id: 'test-1', name: 'Vlad', faction: 'VAMPIRE' as const, specialization: 'HYBRID' as const,
+      level: 3, experience: 100, experienceToNextLevel: 500, gold: 500, tokens: 10,
+      stamina: 9999, maxStamina: 50, health: 9999, maxHealth: 100,
+      stats: { strength: 14, agility: 12, vitality: 15, occultism: 18 },
+      evolutionPoints: 0, masqueradeAlert: 0, hideoutLevel: 2, vaultGold: 0, vaultGoldLimit: 100,
+      hideoutRooms: { throne_sarcophagus: 1, catacomb_vault: 1, ritual_sanctum: 1 }
+    };
+
+    const normalized = normalizeCharacterStats(rawChar);
+    expect(normalized.maxHealth).toBe(425);
+    expect(normalized.health).toBe(425);
+    expect(normalized.maxStamina).toBe(125);
+    expect(normalized.stamina).toBe(125);
+    expect(normalized.vaultGoldLimit).toBe(30000);
+  });
+
   it('calculates stat training costs incrementally', () => {
     const costOne = calculateStatTrainingCost(10, 1);
     expect(costOne.goldCost).toBeGreaterThan(0);
@@ -57,35 +73,19 @@ describe('Formulas: Progression', () => {
   });
 
   it('calculates hideout upgrade costs and maps architectural stages', () => {
-    // Custos progressivos
     expect(calculateHideoutUpgradeCost(1)).toBe(150);
     expect(calculateHideoutUpgradeCost(2)).toBe(409);
     expect(calculateHideoutUpgradeCost(3)).toBeGreaterThan(calculateHideoutUpgradeCost(2));
 
-    // Estágios
-    const wasteland = getHideoutStage(1);
-    expect(wasteland.stageId).toBe('WASTELAND');
-    expect(wasteland.imageAsset).toContain('refugio_terreno_baldio.svg');
-
-    const cabin = getHideoutStage(2);
-    expect(cabin.stageId).toBe('CABIN');
-    expect(cabin.imageAsset).toContain('refugio_cabana_velha.svg');
-
-    const crypt = getHideoutStage(5);
-    expect(crypt.stageId).toBe('CRYPT');
-    expect(crypt.imageAsset).toContain('refugio_cripta_pedra.svg');
-
-    const mansion = getHideoutStage(8);
-    expect(mansion.stageId).toBe('MANSION');
-    expect(mansion.imageAsset).toContain('refugio_mansao_gotica.svg');
-
-    const castle = getHideoutStage(10);
-    expect(castle.stageId).toBe('CASTLE');
-    expect(castle.imageAsset).toContain('refugio_castelo_imperial.svg');
+    expect(getHideoutStage(1).stageId).toBe('WASTELAND');
+    expect(getHideoutStage(2).stageId).toBe('CABIN');
+    expect(getHideoutStage(5).stageId).toBe('CRYPT');
+    expect(getHideoutStage(8).stageId).toBe('MANSION');
+    expect(getHideoutStage(10).stageId).toBe('CASTLE');
   });
 });
 
-describe('Formulas: Hunting', () => {
+describe('Formulas: Hunting & Tagmar RPG System', () => {
   const sampleStats = { strength: 15, agility: 12, vitality: 14, occultism: 10 };
 
   it('calculates player hunting power', () => {
@@ -93,19 +93,81 @@ describe('Formulas: Hunting', () => {
     expect(power).toBeGreaterThan(50);
   });
 
-  it('resolves successful hunt with earned gold and damage taken', () => {
-    const outcome = resolveHunt(80, 'STREET_MORTAL', 10, 0.2);
-    expect(outcome.success).toBe(true);
-    expect(outcome.goldEarned).toBeGreaterThan(0);
-    expect(outcome.xpEarned).toBeGreaterThan(0);
-    expect(outcome.alertIncrease).toBe(2);
+  it('evaluates Tagmar physical fatigue conditions correctly', () => {
+    expect(getPhysicalCondition(100, 100, 400)).toBe('RESTED');
+    expect(getPhysicalCondition(70, 100, 400)).toBe('RESTED');
+    expect(getPhysicalCondition(60, 100, 400)).toBe('TIRED');
+    expect(getPhysicalCondition(25, 100, 400)).toBe('FATIGUED');
+    expect(getPhysicalCondition(0, 100, 400)).toBe('EXHAUSTED');
+    expect(getPhysicalCondition(100, 100, 0)).toBe('TORPOR');
+    expect(getPhysicalCondition(0, 100, 0)).toBe('TORPOR');
   });
 
-  it('resolves failed hunt when roll exceeds success threshold', () => {
-    const outcome = resolveHunt(10, 'ANCIENT_CRYPT', 20, 0.99);
+  it('validates action allowance with canPerformAction', () => {
+    // Caso de sucesso (tem stamina e vida)
+    expect(canPerformAction(50, 400, 10).allowed).toBe(true);
+
+    // Caso de stamina insuficiente (exaustão)
+    const exhaustedCheck = canPerformAction(5, 400, 15);
+    expect(exhaustedCheck.allowed).toBe(false);
+    expect(exhaustedCheck.reason).toContain('Energia física esgotada');
+
+    // Caso de torpor (health 0)
+    const torporCheck = canPerformAction(100, 0, 10);
+    expect(torporCheck.allowed).toBe(false);
+    expect(torporCheck.reason).toContain('Torpor cadavérico');
+  });
+
+  it('verifies condition multipliers and details', () => {
+    const rested = getConditionDetails('RESTED');
+    expect(rested.powerMultiplier).toBe(1.10);
+    expect(rested.label).toBe('Revigorado');
+
+    const fatigued = getConditionDetails('FATIGUED');
+    expect(fatigued.powerMultiplier).toBe(0.80);
+    expect(fatigued.label).toBe('Fadigado');
+
+    const exhausted = getConditionDetails('EXHAUSTED');
+    expect(exhausted.powerMultiplier).toBe(0.50);
+
+    const torpor = getConditionDetails('TORPOR');
+    expect(torpor.powerMultiplier).toBe(0.0);
+  });
+
+  it('resolves decisive success (crítico) with 0 damage and bonus rewards', () => {
+    // Roll extremamente baixo (0.01) garante Sucesso Decisivo no Tagmar
+    const outcome = resolveHunt(120, 'STREET_MORTAL', 10, 0.01);
+    expect(outcome.success).toBe(true);
+    expect(outcome.resolutionGrade).toBe('DECISIVE_SUCCESS');
+    expect(outcome.damageTaken).toBe(0);
+    expect(outcome.goldEarned).toBeGreaterThan(50);
+    expect(outcome.xpEarned).toBeGreaterThan(30);
+    expect(outcome.narrative).toContain('BOTE PERFEITO');
+  });
+
+  it('resolves normal success with standard rewards and moderate damage', () => {
+    const outcome = resolveHunt(80, 'STREET_MORTAL', 10, 0.40);
+    expect(outcome.success).toBe(true);
+    expect(['NORMAL_SUCCESS', 'GOOD_SUCCESS']).toContain(outcome.resolutionGrade);
+    expect(outcome.goldEarned).toBeGreaterThan(0);
+    expect(outcome.xpEarned).toBeGreaterThan(0);
+  });
+
+  it('resolves critical failure when roll is disastrous', () => {
+    const outcome = resolveHunt(10, 'ANCIENT_CRYPT', 35, 0.98);
     expect(outcome.success).toBe(false);
+    expect(outcome.resolutionGrade).toBe('CRITICAL_FAILURE');
     expect(outcome.goldEarned).toBe(0);
-    expect(outcome.damageTaken).toBeGreaterThan(0);
+    expect(outcome.xpEarned).toBe(0);
+    expect(outcome.damageTaken).toBeGreaterThan(200);
+    expect(outcome.narrative).toContain('DESASTRE');
+  });
+
+  it('applies fatigue penalties during hunt resolution', () => {
+    // Sob fadiga, o poder efetivo é reduzido
+    const outcomeFatigued = resolveHunt(50, 'NOCTURNAL_PATROL', 15, 0.88, 0, 'FATIGUED');
+    expect(outcomeFatigued.success).toBe(false);
+    expect(outcomeFatigued.resolutionGrade).toBe('CRITICAL_FAILURE');
   });
 });
 

@@ -31,3 +31,18 @@ export interface CharacterProfile {
   vaultGoldLimit: number;
   hideoutRooms?: Record<string, number>;
 }
+
+export type TagmarPhysicalCondition =
+  | 'RESTED'     // Revigorado (>= 70% stamina)
+  | 'TIRED'      // Cansado (30% - 69% stamina)
+  | 'FATIGUED'   // Fadigado (1% - 29% stamina)
+  | 'EXHAUSTED'  // Exausto / Esgotado (0 stamina)
+  | 'TORPOR';    // Torpor / Morte aparente (0 HP)
+
+export type TagmarResolutionGrade =
+  | 'CRITICAL_FAILURE'  // Falha Crítica (Verde no Tagmar)
+  | 'FAILURE'           // Falha Normal (Branco)
+  | 'NORMAL_SUCCESS'    // Sucesso Normal (Amarelo)
+  | 'GOOD_SUCCESS'      // Sucesso Bom (Laranja)
+  | 'DECISIVE_SUCCESS'; // Sucesso Decisivo / Crítico (Vermelho)
+

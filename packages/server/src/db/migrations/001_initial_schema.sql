@@ -1,6 +1,8 @@
 -- Migração Inicial 001: Esquema Relacional Autoritativo (PostgreSQL)
 -- Conformidade: ARCHITECTURE.md Seção 5 e DevSecOps ACID
 
+BEGIN;
+
 -- 1. Contas de Usuários (Autenticação e Saldo Global de Tokens)
 CREATE TABLE IF NOT EXISTS accounts (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -95,3 +97,5 @@ CREATE INDEX IF NOT EXISTS idx_items_owner ON items(owner_id);
 CREATE INDEX IF NOT EXISTS idx_market_orders_status ON market_orders(status, created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_audit_character ON financial_audit_ledger(character_id, created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_audit_account ON financial_audit_ledger(account_id, created_at DESC);
+
+COMMIT;

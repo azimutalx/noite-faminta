@@ -1,10 +1,14 @@
 import { GameState, store, ActiveTab } from '../state/store.js';
+import { getPhysicalCondition, getConditionDetails } from '@noite-faminta/shared';
 
 export function renderHeader(state: GameState): string {
   const { character, activeTab } = state;
   const isVampire = character.faction === 'VAMPIRE';
   const factionBadgeClass = isVampire ? 'badge-vampire' : 'badge-lycan';
   const factionName = isVampire ? 'Caimita (Vampiro)' : 'Garou (Lupino)';
+
+  const condition = getPhysicalCondition(character.stamina, character.maxStamina, character.health);
+  const condDetails = getConditionDetails(condition);
 
   const hpPercent = Math.min(100, Math.round((character.health / character.maxHealth) * 100));
   const staminaPercent = Math.min(100, Math.round((character.stamina / character.maxStamina) * 100));
@@ -26,6 +30,9 @@ export function renderHeader(state: GameState): string {
               <h1 style="font-size: 22px; letter-spacing: 0.08em; text-shadow: 0 2px 6px rgba(0,0,0,0.9);">${character.name}</h1>
               <span class="badge ${factionBadgeClass}">${factionName}</span>
               <span class="badge" style="background: rgba(212,214,226,0.1); color: var(--color-silver-light);">RANK ${character.hideoutLevel}</span>
+              <span class="badge" style="background: rgba(0,0,0,0.6); border: 1px solid ${condDetails.color}; color: ${condDetails.color}; font-size: 10px;" title="${condDetails.description}">
+                ${condDetails.label.toUpperCase()}
+              </span>
             </div>
             <p style="font-size: 12px; color: var(--color-text-muted); font-family: var(--font-family-body);">
               Especialização: <strong style="color: var(--color-silver-light);">${character.specialization}</strong> • Pontos de Evolução: <strong style="color: var(--color-gold-coin); font-family: var(--font-family-mono);">${character.evolutionPoints}</strong>
@@ -48,7 +55,7 @@ export function renderHeader(state: GameState): string {
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: var(--space-3); margin-bottom: var(--space-4);">
         <div style="background: rgba(0,0,0,0.35); padding: var(--space-2); border-radius: var(--radius-xs); border: 1px solid rgba(220,30,30,0.2);">
           <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: var(--space-1); font-family: var(--font-family-mono);">
-            <span style="letter-spacing: 0.08em; color: #ff8787; font-weight: 700;">🩸 VITALIDADE</span>
+            <span style="letter-spacing: 0.08em; color: #ff8787; font-weight: 700;">🩸 VITALIDADE ${character.health <= 0 ? '(TORPOR)' : ''}</span>
             <span style="font-weight: 700; color: #ff8787;">${character.health} / ${character.maxHealth}</span>
           </div>
           <div class="progress-container">
@@ -58,8 +65,8 @@ export function renderHeader(state: GameState): string {
 
         <div style="background: rgba(0,0,0,0.35); padding: var(--space-2); border-radius: var(--radius-xs); border: 1px solid rgba(56,158,226,0.2);">
           <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: var(--space-1); font-family: var(--font-family-mono);">
-            <span style="letter-spacing: 0.08em; color: #74c0fc; font-weight: 700;">⚡ ENERGIA</span>
-            <span style="font-weight: 700; color: #74c0fc;">${character.stamina} / ${character.maxStamina}</span>
+            <span style="letter-spacing: 0.08em; color: #74c0fc; font-weight: 700;">⚡ ENERGIA (${condDetails.label.toUpperCase()})</span>
+            <span style="font-weight: 700; color: ${condDetails.color};">${character.stamina} / ${character.maxStamina}</span>
           </div>
           <div class="progress-container">
             <div class="progress-fill fill-stamina" style="width: ${staminaPercent}%;"></div>

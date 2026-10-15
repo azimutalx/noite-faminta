@@ -3,8 +3,14 @@ import {
   HuntResolutionResult,
   MarketOrder,
   MarketBuyResult,
-  OrderType
+  OrderType,
+  calculateHuntingPower,
+  resolveHunt,
+  getPhysicalCondition,
+  canPerformAction,
+  HuntTargetType
 } from '@noite-faminta/shared';
+import { store } from './store.js';
 
 export * from './combatApi.js';
 
@@ -84,7 +90,7 @@ export async function trainStat(
 }
 
 export async function startHunt(
-  targetType: 'STREET_MORTAL' | 'NOCTURNAL_PATROL' | 'INQUISITION_OUTPOST' | 'ANCIENT_CRYPT',
+  targetType: HuntTargetType,
   staminaCost: number
 ): Promise<ApiResponse<{ outcome: HuntResolutionResult; updatedStatus: Partial<CharacterProfile> }>> {
   try {
@@ -94,20 +100,46 @@ export async function startHunt(
       body: JSON.stringify({ targetType, staminaCost })
     });
     if (!res.ok) {
+      const errJson = (await res.json().catch(() => null)) as { error?: string; message?: string } | null;
       return {
-        data: {
-          outcome: { success: true, goldEarned: 60, xpEarned: 40, damageTaken: 6, alertIncrease: 2, staminaConsumed: staminaCost },
-          updatedStatus: { gold: 510, experience: 380, stamina: 70, health: 474, masqueradeAlert: 17 }
-        }
+        error: errJson?.error ?? 'HUNT_FAILED',
+        message: errJson?.message ?? 'Falha na autorização ou execução da caçada.'
       };
     }
     const json = (await res.json()) as { outcome?: HuntResolutionResult; updatedStatus?: Partial<CharacterProfile> };
     return { data: { outcome: json.outcome!, updatedStatus: json.updatedStatus! } };
   } catch (_err) {
+    // Fallback defensivo local: validação estrita de fadiga e torpor do Tagmar
+    const char = store.getState().character;
+    const actionCheck = canPerformAction(char.stamina, char.health, staminaCost);
+    if (!actionCheck.allowed) {
+      return {
+        error: char.health <= 0 ? 'TORPOR' : 'INSUFFICIENT_STAMINA',
+        message: actionCheck.reason
+      };
+    }
+
+    const playerPower = calculateHuntingPower(char.stats, char.level);
+    const condition = getPhysicalCondition(char.stamina, char.maxStamina, char.health);
+    const roll = Math.random();
+    const outcome = resolveHunt(playerPower, targetType, staminaCost, roll, 0, condition);
+
+    const newStamina = Math.max(0, char.stamina - outcome.staminaConsumed);
+    const newHealth = Math.max(0, char.health - outcome.damageTaken);
+    const newGold = char.gold + outcome.goldEarned;
+    const newXp = char.experience + outcome.xpEarned;
+    const newAlert = Math.min(100, char.masqueradeAlert + outcome.alertIncrease);
+
     return {
       data: {
-        outcome: { success: true, goldEarned: 60, xpEarned: 40, damageTaken: 6, alertIncrease: 2, staminaConsumed: staminaCost },
-        updatedStatus: { gold: 510, experience: 380, stamina: 70, health: 474, masqueradeAlert: 17 }
+        outcome,
+        updatedStatus: {
+          stamina: newStamina,
+          health: newHealth,
+          gold: newGold,
+          experience: newXp,
+          masqueradeAlert: newAlert
+        }
       }
     };
   }

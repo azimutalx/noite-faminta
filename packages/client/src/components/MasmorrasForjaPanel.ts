@@ -34,11 +34,11 @@ export function renderMasmorrasForjaPanel(state: GameState): string {
               </p>
               <div style="font-size: 11px; background: rgba(0, 0, 0, 0.4); padding: var(--space-2); border-radius: var(--radius-xs); border: 1px solid var(--color-border-subtle); margin-bottom: var(--space-3); font-family: var(--font-family-mono);">
                 <div>🩸 <strong>Carving:</strong> Coração de Inquisidor (45%), Placa Sagrada (75%)</div>
-                <div style="color: var(--color-gold-coin); margin-top: 2px;">⚡ 20 Stamina • 🏆 +250 Gold, +500 XP</div>
+                <div style="color: ${character.stamina >= 20 ? 'var(--color-gold-coin)' : '#ff6b6b'}; margin-top: 2px;">⚡ 20 Stamina (Possui: ${character.stamina}) • 🏆 +250 Gold, +500 XP</div>
               </div>
             </div>
-            <button class="btn btn-primary btn-raid" data-boss="INQUISITOR_MALACHI" style="width: 100%;">
-              ⚔️ Invadir Cripta Inquisitorial
+            <button class="btn btn-primary btn-raid" data-boss="INQUISITOR_MALACHI" ${character.stamina < 20 || character.health <= 0 ? 'disabled' : ''} style="width: 100%;">
+              ${character.health <= 0 ? '💀 Em Torpor' : character.stamina < 20 ? `⛔ Exausto (${character.stamina}/20 ST)` : '⚔️ Invadir Cripta Inquisitorial (20 ST)'}
             </button>
           </div>
 
@@ -54,11 +54,11 @@ export function renderMasmorrasForjaPanel(state: GameState): string {
               </p>
               <div style="font-size: 11px; background: rgba(0, 0, 0, 0.4); padding: var(--space-2); border-radius: var(--radius-xs); border: 1px solid var(--color-border-subtle); margin-bottom: var(--space-3); font-family: var(--font-family-mono);">
                 <div>🩸 <strong>Carving:</strong> Presa de Titã (40%), Tendão Ancestral (70%)</div>
-                <div style="color: var(--color-gold-coin); margin-top: 2px;">⚡ 25 Stamina • 🏆 +420 Gold, +850 XP</div>
+                <div style="color: ${character.stamina >= 25 ? 'var(--color-gold-coin)' : '#ff6b6b'}; margin-top: 2px;">⚡ 25 Stamina (Possui: ${character.stamina}) • 🏆 +420 Gold, +850 XP</div>
               </div>
             </div>
-            <button class="btn btn-blood btn-raid" data-boss="ANCIENT_FENRIR" style="width: 100%;">
-              🐾 Caçar Fera Primordial
+            <button class="btn btn-blood btn-raid" data-boss="ANCIENT_FENRIR" ${character.stamina < 25 || character.health <= 0 ? 'disabled' : ''} style="width: 100%;">
+              ${character.health <= 0 ? '💀 Em Torpor' : character.stamina < 25 ? `⛔ Exausto (${character.stamina}/25 ST)` : '🐾 Caçar Fera Primordial (25 ST)'}
             </button>
           </div>
 
@@ -74,11 +74,11 @@ export function renderMasmorrasForjaPanel(state: GameState): string {
               </p>
               <div style="font-size: 11px; background: rgba(0, 0, 0, 0.4); padding: var(--space-2); border-radius: var(--radius-xs); border: 1px solid var(--color-border-subtle); margin-bottom: var(--space-3); font-family: var(--font-family-mono);">
                 <div>🩸 <strong>Carving:</strong> Sangue Carmesim (30%), Véu Ancestral (60%)</div>
-                <div style="color: var(--color-gold-coin); margin-top: 2px;">⚡ 30 Stamina • 🏆 +650 Gold, +1300 XP</div>
+                <div style="color: ${character.stamina >= 30 ? 'var(--color-gold-coin)' : '#ff6b6b'}; margin-top: 2px;">⚡ 30 Stamina (Possui: ${character.stamina}) • 🏆 +650 Gold, +1300 XP</div>
               </div>
             </div>
-            <button class="btn btn-secondary btn-raid" data-boss="CRIMSON_CARMILLA" style="width: 100%; border-color: #da77f2; color: #da77f2;">
-              🩸 Desafiar Soberana Carmesim
+            <button class="btn btn-secondary btn-raid" data-boss="CRIMSON_CARMILLA" ${character.stamina < 30 || character.health <= 0 ? 'disabled' : ''} style="width: 100%; border-color: #da77f2; color: #da77f2;">
+              ${character.health <= 0 ? '💀 Em Torpor' : character.stamina < 30 ? `⛔ Exausto (${character.stamina}/30 ST)` : '🩸 Desafiar Soberana Carmesim (30 ST)'}
             </button>
           </div>
         </div>
@@ -185,11 +185,27 @@ export function attachMasmorrasForjaEvents(container: HTMLElement): void {
       const bossId = btn.getAttribute('data-boss') as DungeonBossId | null;
       if (!bossId) return;
 
+      const costs: Record<DungeonBossId, number> = {
+        INQUISITOR_MALACHI: 20,
+        ANCIENT_FENRIR: 25,
+        CRIMSON_CARMILLA: 30
+      };
+      const cost = costs[bossId] ?? 20;
+      const state = store.getState();
+      if (state.character.health <= 0) {
+        store.addLog('💀 Personagem em Torpor cadavérico. Descanse no Sarcófago do Refúgio!', 'danger');
+        return;
+      }
+      if (state.character.stamina < cost) {
+        store.addLog(`⚡ Energia física insuficiente (Necessário: ${cost} Stamina, Possui: ${state.character.stamina}). Descanse no Refúgio!`, 'danger');
+        return;
+      }
+
       btn.disabled = true;
       btn.textContent = '⚔️ Combatendo...';
-      store.addLog(`Incursionando nas criptas profundas contra o chefe...`, 'info');
+      store.addLog(`Incursionando nas criptas profundas contra o chefe (-${cost} Stamina)...`, 'info');
 
-      const res = await raidDungeonBoss(bossId);
+      const res = await raidDungeonBoss(bossId, cost);
       btn.disabled = false;
       btn.textContent = '⚔️ Invadir Cripta';
 

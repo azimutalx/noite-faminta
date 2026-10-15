@@ -1,9 +1,7 @@
 import {
-  HideoutChamberId,
-  HIDEOUT_CHAMBERS,
-  calculateChamberCost
+  HideoutChamberId
 } from '@noite-faminta/shared';
-import { GameState, store } from '../state/store.js';
+import { GameState, store, type RefugioSubTab } from '../state/store.js';
 import { ascendHideout } from '../state/hideoutApi.js';
 import { renderRefugioChambers } from './refugio/RefugioChambers.js';
 import { renderRefugioPanorama } from './refugio/RefugioPanorama.js';
@@ -11,14 +9,11 @@ import { renderRefugioArsenal } from './refugio/RefugioArsenal.js';
 import { renderRefugioGambits } from './refugio/RefugioGambits.js';
 import { renderChamberModal } from './refugio/RefugioChamberModal.js';
 
-export type RefugioSubTab = 'chambers' | 'panorama' | 'arsenal' | 'gambits';
-
-let currentSubTab: RefugioSubTab = 'chambers';
-let inspectedChamberId: HideoutChamberId | null = null;
-let torchLightingActive = false;
+export type { RefugioSubTab };
 
 export function renderRefugioPanel(state: GameState): string {
-  const { character } = state;
+  const { character, ui } = state;
+  const currentSubTab = ui.refugioSubTab;
 
   let activeSubTabHtml = '';
   switch (currentSubTab) {
@@ -36,10 +31,10 @@ export function renderRefugioPanel(state: GameState): string {
       break;
   }
 
-  const modalHtml = inspectedChamberId ? renderChamberModal(character, inspectedChamberId) : '';
+  const modalHtml = ui.inspectedChamberId ? renderChamberModal(character, ui.inspectedChamberId) : '';
 
   return `
-    <section class="panel-grid ${torchLightingActive ? 'torch-ambiance-red' : ''}">
+    <section class="panel-grid ${ui.torchLightingActive ? 'torch-ambiance-red' : ''}">
       <div style="grid-column: 1 / -1;">
         <!-- Seletor de Sub-Abas do Santuário Gótico -->
         <div class="hideout-subtabs">
@@ -65,53 +60,13 @@ export function renderRefugioPanel(state: GameState): string {
   `;
 }
 
-function handleChamberUpgrade(chamberId: HideoutChamberId): void {
-  const state = store.getState();
-  const rooms = { ...(state.character.hideoutRooms ?? {}) };
-  const currentLvl = rooms[chamberId] ?? 0;
-  const cfg = HIDEOUT_CHAMBERS[chamberId];
-  if (currentLvl >= cfg.maxLevel) return;
-
-  const cost = calculateChamberCost(chamberId, currentLvl);
-  if (state.character.gold < cost) {
-    store.addLog(`Ouro insuficiente para erguer esta ala. Necessário: ${cost.toLocaleString('pt-BR')} Gold.`, 'danger');
-    return;
-  }
-
-  const nextLvl = currentLvl + 1;
-  rooms[chamberId] = nextLvl;
-
-  let newMaxHealth = state.character.maxHealth;
-  let newMaxStamina = state.character.maxStamina;
-  let newVaultLimit = state.character.vaultGoldLimit;
-
-  if (chamberId === 'throne_sarcophagus') newMaxHealth += 40;
-  if (chamberId === 'ritual_sanctum') newMaxStamina += 15;
-  if (chamberId === 'catacomb_vault') newVaultLimit += 15000;
-
-  store.updateCharacter({
-    gold: state.character.gold - cost,
-    maxHealth: newMaxHealth,
-    maxStamina: newMaxStamina,
-    vaultGoldLimit: newVaultLimit,
-    hideoutRooms: rooms
-  });
-
-  store.addLog(
-    `🧱 OBRA GÓTICA CONCLUÍDA! A ala [${cfg.name}] ascendeu para o Nível ${nextLvl}!`,
-    'gold'
-  );
-}
-
 export function attachRefugioEvents(container: HTMLElement): void {
   // Troca de sub-abas
   container.querySelectorAll<HTMLButtonElement>('.hideout-subtab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const tab = btn.dataset.subtab as RefugioSubTab | undefined;
-      if (tab && tab !== currentSubTab) {
-        currentSubTab = tab;
-        inspectedChamberId = null;
-        store.updateCharacter({});
+      if (tab) {
+        store.setRefugioSubTab(tab);
       }
     });
   });
@@ -120,12 +75,7 @@ export function attachRefugioEvents(container: HTMLElement): void {
   const torchBtn = container.querySelector<HTMLButtonElement>('#btn-toggle-ambiance');
   if (torchBtn) {
     torchBtn.addEventListener('click', () => {
-      torchLightingActive = !torchLightingActive;
-      store.addLog(
-        torchLightingActive ? '🕯️ As tochas carmesins do santuário foram acesas!' : '🌙 As tochas foram apagadas. A luz lunar penetra as criptas.',
-        'info'
-      );
-      store.updateCharacter({});
+      store.toggleTorchLighting();
     });
   }
 
@@ -135,8 +85,7 @@ export function attachRefugioEvents(container: HTMLElement): void {
       e.stopPropagation();
       const id = el.dataset.chamberId as HideoutChamberId | undefined;
       if (id) {
-        inspectedChamberId = id;
-        store.updateCharacter({});
+        store.setInspectedChamber(id);
       }
     });
   });
@@ -145,8 +94,7 @@ export function attachRefugioEvents(container: HTMLElement): void {
   const closeBtn = container.querySelector<HTMLButtonElement>('#btn-close-chamber-modal');
   if (closeBtn) {
     closeBtn.addEventListener('click', () => {
-      inspectedChamberId = null;
-      store.updateCharacter({});
+      store.setInspectedChamber(null);
     });
   }
 
@@ -155,7 +103,7 @@ export function attachRefugioEvents(container: HTMLElement): void {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
       const id = btn.dataset.chamberId as HideoutChamberId | undefined;
-      if (id) handleChamberUpgrade(id);
+      if (id) store.upgradeChamber(id);
     });
   });
 
@@ -164,7 +112,7 @@ export function attachRefugioEvents(container: HTMLElement): void {
   if (modalUpgradeBtn) {
     modalUpgradeBtn.addEventListener('click', () => {
       const id = modalUpgradeBtn.dataset.chamberId as HideoutChamberId | undefined;
-      if (id) handleChamberUpgrade(id);
+      if (id) store.upgradeChamber(id);
     });
   }
 
@@ -172,30 +120,14 @@ export function attachRefugioEvents(container: HTMLElement): void {
   const restBtn = container.querySelector<HTMLButtonElement>('#btn-rest') ?? container.querySelector<HTMLButtonElement>('#modal-btn-rest');
   if (restBtn) {
     restBtn.addEventListener('click', () => {
-      const state = store.getState();
-      if (state.character.health >= state.character.maxHealth) {
-        store.addLog('Sua vitalidade já está no ápice.', 'info');
-        return;
-      }
-      store.updateCharacter({ health: state.character.maxHealth });
-      store.addLog('Você repousou no sarcófago imperial e restaurou 100% de sua Vitalidade!', 'success');
+      store.restAtSanctuary();
     });
   }
 
   const depositBtn = container.querySelector<HTMLButtonElement>('#btn-deposit-vault') ?? container.querySelector<HTMLButtonElement>('#modal-btn-vault');
   if (depositBtn) {
     depositBtn.addEventListener('click', () => {
-      const state = store.getState();
-      const available = Math.min(state.character.gold, state.character.vaultGoldLimit - state.character.vaultGold);
-      if (available <= 0) {
-        store.addLog('Cofre blindado lotado ou sem ouro livre na bolsa.', 'info');
-        return;
-      }
-      store.updateCharacter({
-        gold: state.character.gold - available,
-        vaultGold: state.character.vaultGold + available
-      });
-      store.addLog(`Depositou ${available.toLocaleString('pt-BR')} Gold nas arcas blindadas do cofre.`, 'gold');
+      store.depositToVault();
     });
   }
 
@@ -203,7 +135,7 @@ export function attachRefugioEvents(container: HTMLElement): void {
   const forgeBtn = container.querySelector<HTMLButtonElement>('#modal-btn-forge');
   if (forgeBtn) {
     forgeBtn.addEventListener('click', () => {
-      inspectedChamberId = null;
+      store.setInspectedChamber(null);
       store.setActiveTab('masmorras');
     });
   }

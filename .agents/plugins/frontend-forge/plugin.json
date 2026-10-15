@@ -1,0 +1,6 @@
+{
+  "name": "frontend-forge",
+  "version": "1.0.0",
+  "description": "Agente autônomo e conjunto de governança de engenharia frontend para Google Antigravity. Combina arquitetura de software, design systems, UX defensiva, acessibilidade WCAG 2.2 AA, verificação técnica e inspeção visual via MCP.",
+  "author": "Antigravity Engineering Team"
+}

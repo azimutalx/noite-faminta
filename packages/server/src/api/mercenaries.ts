@@ -1,5 +1,11 @@
 import { FastifyInstance, FastifyPluginAsync } from 'fastify';
-import { RentMercenarySchema, RegisterMercenarySchema, Faction, Specialization } from '@noite-faminta/shared';
+import {
+  RentMercenarySchema,
+  RegisterMercenarySchema,
+  Faction,
+  Specialization,
+  calculateMercenaryCombatPower
+} from '@noite-faminta/shared';
 import { withTransaction } from '../db/connection.js';
 import {
   listAvailableMercenaries,
@@ -54,7 +60,7 @@ export const mercenaryRoutes: FastifyPluginAsync = async (app: FastifyInstance) 
         return reply.status(404).send({ error: 'Personagem não encontrado' });
       }
 
-      const combatPower = character.strength * 2 + character.agility * 2 + character.occultism * 3;
+      const combatPower = calculateMercenaryCombatPower(character);
       const contract = registerPlayerMercenary(
         character.id,
         character.name,
