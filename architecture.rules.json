@@ -1,0 +1,69 @@
+{
+  "max_file_lines": 300,
+  "max_Unit_lines": 60,
+  "ignore_dirs": [],
+  "layer_boundaries": [
+    {
+      "forbidden_imports": [
+        "server",
+        "client",
+        "pg",
+        "prisma",
+        "kysely",
+        "redis",
+        "fs",
+        "crypto",
+        "process",
+        "fastify"
+      ],
+      "source_dir": "shared"
+    },
+    {
+      "forbidden_imports": [
+        "server",
+        "pg",
+        "prisma",
+        "kysely",
+        "redis",
+        "fastify"
+      ],
+      "source_dir": "client"
+    },
+    {
+      "forbidden_imports": [
+        "client"
+      ],
+      "source_dir": "server"
+    }
+  ],
+  "forbidden_patterns": [
+    {
+      "message": "Proibido o uso de 'any' em arquivos TypeScript.",
+      "path_contains": ".ts",
+      "regex": ":\\s*any\\b|as\\s+any\\b|<any>"
+    },
+    {
+      "message": "Proibido o uso de '@ts-ignore'. Trate os tipos estritamente.",
+      "path_contains": ".ts",
+      "regex": "@ts-ignore"
+    }
+  ],
+  "required_patterns": [
+    {
+      "message": "Módulos da camada api/ devem obrigatoriamente utilizar validação com Zod.",
+      "must_contain": [
+        "zod"
+      ],
+      "path_contains": "api",
+      "trigger_word": ""
+    },
+    {
+      "message": "Operações financeiras e de mercado devem registrar transações em financial_audit_ledger.",
+      "must_contain": [
+        "financial_audit_ledger"
+      ],
+      "path_contains": "market",
+      "trigger_word": ""
+    }
+  ]
+}

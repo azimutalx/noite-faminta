@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#050508"/>
+      <stop offset="60%" stop-color="#180709"/>
+      <stop offset="100%" stop-color="#2d0b10"/>
+    </linearGradient>
+    <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff6b6b" stop-opacity="0.8"/>
+      <stop offset="35%" stop-color="#b81414" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#b81414" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="groundGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#14080a"/>
+      <stop offset="40%" stop-color="#0a0507"/>
+      <stop offset="100%" stop-color="#020103"/>
+    </linearGradient>
+    <linearGradient id="fogGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff4444" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#990c0c" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#3d0303" stop-opacity="0.7"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Céu Noturno Tempestuoso -->
+  <rect width="800" height="450" fill="url(#skyGrad)"/>
+
+  <!-- Lua Vermelha de Sangue -->
+  <circle cx="620" cy="120" r="110" fill="url(#moonGlow)"/>
+  <circle cx="620" cy="120" r="48" fill="#e03131"/>
+  <circle cx="612" cy="112" r="42" fill="#c92a2a" opacity="0.6"/>
+  <circle cx="636" cy="104" r="10" fill="#990c0c" opacity="0.4"/>
+  <circle cx="604" cy="138" r="14" fill="#750808" opacity="0.3"/>
+
+  <!-- Silhueta da Metrópole Distante com Névoa -->
+  <path d="M0,280 L40,270 L60,275 L80,250 L110,255 L120,220 L135,220 L140,255 L180,265 L220,240 L235,240 L245,268 L310,272 L360,258 L400,275 L450,260 L520,270 L600,265 L700,270 L800,260 L800,320 L0,320 Z" fill="#080406" opacity="0.75"/>
+
+  <!-- Terreno Baldio & Relevo Árido -->
+  <path d="M0,290 Q200,270 420,295 T800,285 L800,450 L0,450 Z" fill="url(#groundGrad)"/>
+  <path d="M0,320 Q280,310 500,335 T800,325 L800,450 L0,450 Z" fill="#080305"/>
+
+  <!-- Névoa Carmesim Rastejante -->
+  <rect y="250" width="800" height="150" fill="url(#fogGrad)"/>
+
+  <!-- Árvore Retorcida Morta (Lado Esquerdo) -->
+  <path d="M120,380 Q130,310 115,260 Q105,220 95,190 Q125,200 135,175 M115,260 Q145,245 165,225 Q175,215 180,225 M115,280 Q85,270 70,255 M120,380 L140,380 Q135,320 155,275 Q170,240 185,230" stroke="#060203" stroke-width="6" fill="none" stroke-linecap="round"/>
+
+  <!-- Escombros, Lápides & Cerca Arruinada -->
+  <!-- Mourões de Cerca Quebrada -->
+  <g stroke="#080406" stroke-width="4" fill="none">
+    <line x1="260" y1="310" x2="255" y2="350"/>
+    <line x1="290" y1="315" x2="295" y2="355"/>
+    <line x1="330" y1="305" x2="325" y2="348"/>
+    <line x1="370" y1="320" x2="380" y2="360"/>
+    <!-- Arame Farpado Quebrado -->
+    <path d="M250,325 Q290,340 330,318 Q355,335 385,330" stroke="#1f1013" stroke-width="2"/>
+  </g>
+
+  <!-- Lápide Antiga Rachada nos Escombros -->
+  <path d="M460,340 Q475,320 490,340 L492,365 L458,365 Z" fill="#140a0e" stroke="#251219" stroke-width="2"/>
+  <line x1="475" y1="330" x2="475" y2="350" stroke="#ff8787" stroke-width="1.5" opacity="0.6"/>
+  <line x1="468" y1="336" x2="482" y2="336" stroke="#ff8787" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Alçapão / Poço com Grade de Ferro no Chão (O Refúgio Oculto) -->
+  <ellipse cx="380" cy="385" rx="55" ry="16" fill="#020102" stroke="#4a181e" stroke-width="3"/>
+  <line x1="340" y1="385" x2="420" y2="385" stroke="#661a22" stroke-width="2"/>
+  <line x1="360" y1="375" x2="360" y2="395" stroke="#661a22" stroke-width="2"/>
+  <line x1="380" y1="373" x2="380" y2="397" stroke="#661a22" stroke-width="2"/>
+  <line x1="400" y1="375" x2="400" y2="395" stroke="#661a22" stroke-width="2"/>
+
+  <!-- Brilho Carmesim Oculto Saindo do Alçapão Subterrâneo -->
+  <ellipse cx="380" cy="385" rx="35" ry="8" fill="#e03131" opacity="0.3" filter="drop-shadow(0 0 10px #ff0000)"/>
+
+  <!-- Moldura Gótica de Apresentação -->
+  <rect x="0" y="0" width="800" height="450" fill="none" stroke="rgba(212, 214, 226, 0.15)" stroke-width="2"/>
+</svg>

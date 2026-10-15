@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  # Banco de Dados PostgreSQL com dados persistidos em volume
+  postgres:
+    image: postgres:16-alpine
+    container_name: noite_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: noite_admin
+      POSTGRES_PASSWORD: senha_local_dev
+      POSTGRES_DB: noite_faminta_db
+    ports:
+      - "127.0.0.1:5432:5432" # Vinculado apenas ao localhost por segurança
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U noite_admin -d noite_faminta_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - backend_network
+
+  # Redis para Rate Limiting, Sessões e Cache de Mercado
+  redis:
+    image: redis:7-alpine
+    container_name: noite_redis
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - backend_network
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  backend_network:
+    driver: bridge

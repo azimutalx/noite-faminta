@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="forgeBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0a0503"/>
+      <stop offset="50%" stop-color="#140905"/>
+      <stop offset="100%" stop-color="#080402"/>
+    </linearGradient>
+    <radialGradient id="fireGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff7043" stop-opacity="0.9"/>
+      <stop offset="35%" stop-color="#e64a19" stop-opacity="0.45"/>
+      <stop offset="80%" stop-color="#bf360c" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ironAnvil" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4e5564"/>
+      <stop offset="50%" stop-color="#282c35"/>
+      <stop offset="100%" stop-color="#121418"/>
+    </linearGradient>
+    <linearGradient id="moltenBlade" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#ffe082"/>
+      <stop offset="70%" stop-color="#ff7043"/>
+      <stop offset="100%" stop-color="#d84315"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="400" fill="url(#forgeBg)"/>
+
+  <!-- Brilho Escaldante da Fornalha -->
+  <circle cx="300" cy="220" r="170" fill="url(#fireGlow)"/>
+
+  <!-- Paredes de Pedra Fuliginosa e Arcos de Fundição -->
+  <path d="M 60 400 L 60 160 Q 300 40 540 160 L 540 400" stroke="#1c1613" stroke-width="20" fill="none"/>
+  <path d="M 60 160 Q 300 40 540 160" stroke="#e64a19" stroke-width="2" fill="none" opacity="0.3"/>
+
+  <!-- Coifa de Exaustão de Ferro Forjado e Chaminé Maciça -->
+  <polygon points="210,120 390,120 440,20 160,20" fill="#1b1c21" stroke="#2e323b" stroke-width="3"/>
+  <rect x="240" y="0" width="120" height="40" fill="#121317" stroke="#252830" stroke-width="2"/>
+  <!-- Rebites da Coifa -->
+  <circle cx="230" cy="110" r="3" fill="#ff7043"/>
+  <circle cx="270" cy="110" r="3" fill="#ff7043"/>
+  <circle cx="330" cy="110" r="3" fill="#ff7043"/>
+  <circle cx="370" cy="110" r="3" fill="#ff7043"/>
+
+  <!-- Fornalha Infernal (O Forno das Brasas) -->
+  <polygon points="190,130 410,130 430,280 170,280" fill="#15171c" stroke="#2c303a" stroke-width="4"/>
+  <!-- Abertura em Arco da Fornalha Ardendo em Chamas -->
+  <path d="M 230 270 L 230 190 Q 300 140 370 190 L 370 270 Z" fill="#b71c1c"/>
+  <path d="M 245 270 L 245 205 Q 300 165 355 205 L 355 270 Z" fill="#e65100"/>
+  <path d="M 265 270 L 265 220 Q 300 185 335 220 L 335 270 Z" fill="#ffd54f"/>
+
+  <!-- Labaredas Dançantes no Forno -->
+  <path d="M 270 260 Q 285 210 295 240 Q 305 190 320 250 Z" fill="#ffffff" opacity="0.85"/>
+
+  <!-- Cepo / Toco de Madeira de Carvalho Negro -->
+  <polygon points="250,300 350,300 365,385 235,385" fill="#1f1813" stroke="#362a22" stroke-width="3"/>
+  <!-- Cintas de Ferro do Cepo -->
+  <line x1="245" y1="330" x2="355" y2="330" stroke="#4e5564" stroke-width="4"/>
+  <line x1="240" y1="360" x2="360" y2="360" stroke="#4e5564" stroke-width="4"/>
+
+  <!-- Bigorna Ancestral de Ferro Forjado -->
+  <!-- Base da Bigorna -->
+  <polygon points="240,300 360,300 350,280 250,280" fill="url(#ironAnvil)" stroke="#111317" stroke-width="2"/>
+  <!-- Cintura da Bigorna -->
+  <rect x="270" y="255" width="60" height="25" fill="url(#ironAnvil)" stroke="#111317" stroke-width="2"/>
+  <!-- Mesa da Bigorna & Chifre Cônico -->
+  <!-- Chifre Esquerdo Pontiagudo -->
+  <polygon points="215,245 260,240 260,255" fill="url(#ironAnvil)" stroke="#111317" stroke-width="2"/>
+  <!-- Corpo Superior e Face -->
+  <rect x="260" y="240" width="105" height="15" fill="url(#ironAnvil)" stroke="#687285" stroke-width="2"/>
+  <!-- Calcanhar Direito -->
+  <polygon points="365,240 385,245 385,255 365,255" fill="url(#ironAnvil)" stroke="#111317" stroke-width="2"/>
+
+  <!-- Lâmina Incandescente em Forjamento sobre a Bigorna -->
+  <polygon points="250,238 340,238 335,242 250,242" fill="url(#moltenBlade)"/>
+
+  <!-- Martelo de Forja e Tenazes Apoiados -->
+  <!-- Cabo do Martelo -->
+  <line x1="345" y1="230" x2="385" y2="190" stroke="#8d6e63" stroke-width="5"/>
+  <!-- Cabeça do Martelo de Guerra -->
+  <polygon points="335,233 350,220 360,230 345,243" fill="#546e7a" stroke="#263238" stroke-width="2"/>
+
+  <!-- Balde de Têmpera com Água Negra/Óleo -->
+  <polygon points="430,320 480,320 470,380 440,380" fill="#1a1c24" stroke="#37474f" stroke-width="2"/>
+  <!-- Vapor de Têmpera -->
+  <path d="M 450 320 Q 440 290 460 270 Q 475 250 455 230" stroke="#90a4ae" stroke-width="3" fill="none" opacity="0.4"/>
+
+  <!-- Faíscas Incandescentes Saltando no Ar -->
+  <circle cx="290" cy="225" r="2.5" fill="#fff59d"/>
+  <circle cx="320" cy="220" r="3" fill="#ffcc80"/>
+  <circle cx="340" cy="205" r="2" fill="#ff7043"/>
+  <circle cx="280" cy="200" r="2" fill="#ffd54f"/>
+  <circle cx="310" cy="180" r="2.5" fill="#fff59d"/>
+  <circle cx="265" cy="215" r="1.5" fill="#ff5722"/>
+  <circle cx="355" cy="210" r="2" fill="#ffe082"/>
+</svg>

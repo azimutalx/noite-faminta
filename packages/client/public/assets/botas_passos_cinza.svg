@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bootsSlotBg" cx="50%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#111926"/>
+      <stop offset="60%" stop-color="#0a0f17"/>
+      <stop offset="100%" stop-color="#04060a"/>
+    </radialGradient>
+
+    <!-- Aura de Agilidade & Vento Noturno -->
+    <radialGradient id="agilityAura" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#339af0" stop-opacity="0.45"/>
+      <stop offset="50%" stop-color="#1c7ed6" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Couro Preto Envernizado das Botas -->
+    <linearGradient id="blackLeather" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#343a40"/>
+      <stop offset="35%" stop-color="#212529"/>
+      <stop offset="75%" stop-color="#141619"/>
+      <stop offset="100%" stop-color="#0b0c0e"/>
+    </linearGradient>
+
+    <!-- Placas de Aço das Grevas -->
+    <linearGradient id="greaveSteel" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#868e96"/>
+      <stop offset="50%" stop-color="#ced4da"/>
+      <stop offset="100%" stop-color="#495057"/>
+    </linearGradient>
+
+    <!-- Fivelas de Prata -->
+    <linearGradient id="silverBuckle" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f8f9fa"/>
+      <stop offset="100%" stop-color="#adb5bd"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fundo -->
+  <rect width="300" height="300" rx="16" fill="url(#bootsSlotBg)" stroke="#22354d" stroke-width="2"/>
+  <rect x="6" y="6" width="288" height="288" rx="12" fill="none" stroke="#74c0fc" stroke-width="1" opacity="0.3"/>
+
+  <!-- Brilho de Agilidade -->
+  <circle cx="150" cy="150" r="110" fill="url(#agilityAura)"/>
+
+  <!-- Par de Botas de Combate Noturno -->
+  <!-- Bota Esquerda (Em Segundo Plano) -->
+  <g transform="translate(-30, -5) scale(0.95)" opacity="0.85">
+    <path d="M 130 50 L 175 55 L 180 170 L 225 210 L 225 240 L 150 240 L 130 170 Z" fill="url(#blackLeather)" stroke="#212529" stroke-width="1.5"/>
+    <path d="M 135 70 L 170 75 L 175 160 L 138 160 Z" fill="url(#greaveSteel)" stroke="#343a40" stroke-width="1"/>
+  </g>
+
+  <!-- Bota Direita (Em Primeiro Plano) -->
+  <!-- Cano Alto de Couro -->
+  <path d="M 135 45 L 195 50 L 198 175 L 255 215 L 255 250 L 160 250 L 138 175 Z" fill="url(#blackLeather)" stroke="#1a1d20" stroke-width="2"/>
+
+  <!-- Greva / Placa de Aço na Canela -->
+  <path d="M 142 65 L 188 70 L 190 165 L 145 165 Z" fill="url(#greaveSteel)" stroke="#343a40" stroke-width="1.5"/>
+  <line x1="165" y1="70" x2="165" y2="165" stroke="#f1f3f5" stroke-width="1.5"/>
+
+  <!-- Tiras e Fivelas de Aperto Rápido -->
+  <!-- Fivela 1 -->
+  <rect x="135" y="85" width="60" height="8" rx="2" fill="#141619" stroke="#343a40" stroke-width="1"/>
+  <rect x="158" y="83" width="14" height="12" rx="2" fill="url(#silverBuckle)" stroke="#495057" stroke-width="1"/>
+
+  <!-- Fivela 2 -->
+  <rect x="137" y="115" width="58" height="8" rx="2" fill="#141619" stroke="#343a40" stroke-width="1"/>
+  <rect x="158" y="113" width="14" height="12" rx="2" fill="url(#silverBuckle)" stroke="#495057" stroke-width="1"/>
+
+  <!-- Fivela 3 -->
+  <rect x="140" y="145" width="55" height="8" rx="2" fill="#141619" stroke="#343a40" stroke-width="1"/>
+  <rect x="158" y="143" width="14" height="12" rx="2" fill="url(#silverBuckle)" stroke="#495057" stroke-width="1"/>
+
+  <!-- Peito do Pé e Tornozelo Articulado -->
+  <path d="M 140 175 Q 170 185 200 180 L 225 210 L 165 215 Z" fill="#212529" stroke="#343a40" stroke-width="1"/>
+
+  <!-- Biqueira Reforçada de Aço Polido -->
+  <path d="M 225 210 L 255 215 L 255 245 L 215 245 Z" fill="url(#greaveSteel)" stroke="#212529" stroke-width="1.5"/>
+  <ellipse cx="238" cy="225" rx="10" ry="6" fill="#f8f9fa" opacity="0.4"/>
+
+  <!-- Sola Tratorada de Borracha e Pregos de Ferro -->
+  <rect x="155" y="245" width="105" height="15" rx="3" fill="#0c0e12" stroke="#212529" stroke-width="1.5"/>
+  <!-- Dentes da Sola / Grip -->
+  <rect x="165" y="255" width="8" height="6" fill="#1a1d24"/>
+  <rect x="180" y="255" width="8" height="6" fill="#1a1d24"/>
+  <rect x="195" y="255" width="8" height="6" fill="#1a1d24"/>
+  <rect x="210" y="255" width="8" height="6" fill="#1a1d24"/>
+  <rect x="225" y="255" width="8" height="6" fill="#1a1d24"/>
+  <rect x="240" y="255" width="8" height="6" fill="#1a1d24"/>
+
+  <!-- Tag de Raridade e Efeito -->
+  <rect x="12" y="12" width="70" height="22" rx="4" fill="rgba(116, 192, 252, 0.25)" stroke="#74c0fc" stroke-width="1"/>
+  <text x="47" y="27" fill="#74c0fc" font-size="11" font-weight="bold" font-family="sans-serif" text-anchor="middle">MÁGICO</text>
+  <text x="288" y="285" fill="#ced4da" font-size="10" font-family="monospace" text-anchor="end">+18 AGILIDADE • +6% ESQUIVA</text>
+</svg>

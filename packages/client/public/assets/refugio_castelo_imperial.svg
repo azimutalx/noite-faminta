@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="skyCastle" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#020204"/>
+      <stop offset="40%" stop-color="#140406"/>
+      <stop offset="80%" stop-color="#2d050a"/>
+      <stop offset="100%" stop-color="#4a0912"/>
+    </linearGradient>
+    <radialGradient id="imperialBloodMoon" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff3b3b" stop-opacity="0.95"/>
+      <stop offset="30%" stop-color="#b81212" stop-opacity="0.6"/>
+      <stop offset="70%" stop-color="#690404" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#3b0000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="goldGleam" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffd43b"/>
+      <stop offset="50%" stop-color="#f59f00"/>
+      <stop offset="100%" stop-color="#d9480f"/>
+    </linearGradient>
+    <radialGradient id="fireBrazier" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffe066"/>
+      <stop offset="40%" stop-color="#ff922b"/>
+      <stop offset="80%" stop-color="#e03131"/>
+      <stop offset="100%" stop-color="#e03131" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Céu com Eclipsada Lua de Sangue Imperial -->
+  <rect width="800" height="450" fill="url(#skyCastle)"/>
+  
+  <circle cx="400" cy="130" r="140" fill="url(#imperialBloodMoon)"/>
+  <circle cx="400" cy="130" r="60" fill="#c92a2a"/>
+  <circle cx="390" cy="120" r="54" fill="#a61e1e" opacity="0.6"/>
+  
+  <!-- Relâmpagos Escarlates / Raios Arcanos de Poder -->
+  <path d="M180,20 L210,90 L195,110 L230,170" stroke="#ff8787" stroke-width="2" fill="none" opacity="0.7"/>
+  <path d="M620,30 L590,85 L605,105 L570,165" stroke="#ff8787" stroke-width="2" fill="none" opacity="0.7"/>
+
+  <!-- Colinas e Penhasco do Castelo -->
+  <path d="M0,320 L150,290 L320,270 L480,270 L650,290 L800,320 L800,450 L0,450 Z" fill="#080305"/>
+
+  <!-- O Castelo Imperial das Sombras -->
+  <g id="castelo">
+    <!-- Torre Esquerda Externa -->
+    <rect x="140" y="160" width="70" height="180" fill="#140609" stroke="#330e15" stroke-width="2"/>
+    <polygon points="135,160 175,60 215,160" fill="#1f090e" stroke="#4a1520" stroke-width="2"/>
+    <!-- Ameias da Torre -->
+    <rect x="135" y="150" width="15" height="12" fill="#290c13"/>
+    <rect x="167" y="150" width="15" height="12" fill="#290c13"/>
+    <rect x="200" y="150" width="15" height="12" fill="#290c13"/>
+
+    <!-- Torre Direita Externa -->
+    <rect x="590" y="160" width="70" height="180" fill="#140609" stroke="#330e15" stroke-width="2"/>
+    <polygon points="585,160 625,60 665,160" fill="#1f090e" stroke="#4a1520" stroke-width="2"/>
+    <!-- Ameias da Torre -->
+    <rect x="585" y="150" width="15" height="12" fill="#290c13"/>
+    <rect x="617" y="150" width="15" height="12" fill="#290c13"/>
+    <rect x="650" y="150" width="15" height="12" fill="#290c13"/>
+
+    <!-- Muralha Frontal com Ameias de Batalha -->
+    <rect x="200" y="210" width="400" height="130" fill="#1a080d" stroke="#3d1119" stroke-width="2"/>
+    <!-- Ameias da Muralha -->
+    <g fill="#2e0d14">
+      <rect x="210" y="198" width="20" height="14"/>
+      <rect x="245" y="198" width="20" height="14"/>
+      <rect x="280" y="198" width="20" height="14"/>
+      <rect x="315" y="198" width="20" height="14"/>
+      <rect x="465" y="198" width="20" height="14"/>
+      <rect x="500" y="198" width="20" height="14"/>
+      <rect x="535" y="198" width="20" height="14"/>
+      <rect x="570" y="198" width="20" height="14"/>
+    </g>
+
+    <!-- Torre de Menagem Central (Troneira / Pináculo Imperial) -->
+    <rect x="330" y="100" width="140" height="240" fill="#210a11" stroke="#4a1520" stroke-width="2"/>
+    <polygon points="320,100 400,10 480,100" fill="#2e0e18" stroke="#631c2a" stroke-width="3"/>
+    
+    <!-- Estandarte Escarlate no Pináculo Central -->
+    <line x1="400" y1="10" x2="400" y2="-10" stroke="#f59f00" stroke-width="3"/>
+    <polygon points="400,-10 445,2 400,14" fill="#e03131" stroke="#ffd43b" stroke-width="1.5"/>
+
+    <!-- Rosácea Mística do Trono Escarlate -->
+    <circle cx="400" cy="145" r="28" fill="#e03131" stroke="url(#goldGleam)" stroke-width="3"/>
+    <circle cx="400" cy="145" r="20" fill="#750808" stroke="url(#goldGleam)" stroke-width="1.5"/>
+    <polygon points="400,128 406,142 418,142 408,150 412,162 400,154 388,162 392,150 382,142 394,142" fill="url(#goldGleam)"/>
+
+    <!-- Janelas Ogivais Góticas Iluminadas por Fogo -->
+    <path d="M355,195 Q365,180 375,195 L375,230 L355,230 Z" fill="#ffd43b" stroke="#4a1520" stroke-width="1.5"/>
+    <path d="M425,195 Q435,180 445,195 L445,230 L425,230 Z" fill="#ffd43b" stroke="#4a1520" stroke-width="1.5"/>
+
+    <!-- Brasão Esculpido de Vampiro / Lycan sobre o Portal -->
+    <circle cx="400" cy="245" r="16" fill="url(#goldGleam)" stroke="#2e0e18" stroke-width="2"/>
+    <text x="400" y="250" font-family="serif" font-size="14" font-weight="900" fill="#000" text-anchor="middle">👑</text>
+
+    <!-- Grande Portal da Fortaleza Imperial com Grade Levadiça -->
+    <path d="M360,265 Q400,240 440,265 L440,340 L360,340 Z" fill="#050102" stroke="url(#goldGleam)" stroke-width="3"/>
+    <g stroke="#80202d" stroke-width="2">
+      <line x1="380" y1="255" x2="380" y2="340"/>
+      <line x1="400" y1="248" x2="400" y2="340"/>
+      <line x1="420" y1="255" x2="420" y2="340"/>
+      <line x1="365" y1="280" x2="435" y2="280"/>
+      <line x1="365" y1="310" x2="435" y2="310"/>
+    </g>
+
+    <!-- Tochas / Braseiros Flamejantes nos Baluartes -->
+    <circle cx="205" cy="205" r="25" fill="url(#fireBrazier)"/>
+    <circle cx="595" cy="205" r="25" fill="url(#fireBrazier)"/>
+    <circle cx="335" cy="265" r="25" fill="url(#fireBrazier)"/>
+    <circle cx="465" cy="265" r="25" fill="url(#fireBrazier)"/>
+  </g>
+
+  <!-- Fosso Abissal & Ponte de Pedra com Correntes de Ouro -->
+  <polygon points="340,340 460,340 490,430 310,430" fill="#14060a" stroke="#330e15" stroke-width="3"/>
+  <line x1="325" y1="350" x2="325" y2="430" stroke="url(#goldGleam)" stroke-width="2.5"/>
+  <line x1="475" y1="350" x2="475" y2="430" stroke="url(#goldGleam)" stroke-width="2.5"/>
+
+  <!-- Moldura Dourada Imperial -->
+  <rect x="0" y="0" width="800" height="450" fill="none" stroke="url(#goldGleam)" stroke-width="3"/>
+</svg>

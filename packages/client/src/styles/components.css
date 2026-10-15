@@ -1,0 +1,267 @@
+/* ==========================================================================
+   COMPONENTES TÁTEIS & ELEMENTOS DE INTERFACE (DARK FANTASY)
+   ========================================================================== */
+
+/* Botões Táteis de Ação */
+.btn {
+  font-family: var(--font-family-display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  user-select: none;
+  position: relative;
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(2px);
+}
+
+.btn-blood {
+  background: linear-gradient(180deg, #990c0c 0%, #5e0505 100%);
+  color: #fff;
+  border: 1px solid #c21919;
+  border-top-color: #ff5252;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 -2px 0 rgba(0, 0, 0, 0.5);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
+}
+
+.btn-blood:hover:not(:disabled) {
+  background: linear-gradient(180deg, #b81212 0%, #750808 100%);
+  box-shadow: 0 0 14px rgba(220, 20, 20, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.btn-blood:active:not(:disabled) {
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.btn-secondary {
+  background: linear-gradient(180deg, #1f1f2a 0%, #111118 100%);
+  color: var(--color-silver-light);
+  border: 1px solid rgba(212, 214, 226, 0.16);
+  border-top-color: rgba(212, 214, 226, 0.3);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: linear-gradient(180deg, #2b2b3a 0%, #181822 100%);
+  border-color: rgba(212, 214, 226, 0.35);
+  color: #fff;
+}
+
+.btn-primary {
+  background: linear-gradient(180deg, #a47a2a 0%, #634710 100%);
+  color: #fff;
+  border: 1px solid var(--color-gold-coin);
+  border-top-color: #ffda85;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(180deg, #bf8f33 0%, #785614 100%);
+  box-shadow: 0 0 14px rgba(205, 163, 79, 0.4);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(0.6);
+}
+
+/* Navegação por Abas (Grimoire Tabs) */
+.nav-tabs {
+  display: flex;
+  gap: var(--space-1);
+  border-bottom: 2px solid rgba(212, 214, 226, 0.12);
+  padding-bottom: 0;
+  overflow-x: auto;
+}
+
+.nav-tab {
+  font-family: var(--font-family-display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: var(--space-2) var(--space-4);
+  background: rgba(14, 14, 20, 0.6);
+  color: var(--color-text-muted);
+  border: 1px solid rgba(212, 214, 226, 0.08);
+  border-bottom: none;
+  border-radius: var(--radius-xs) var(--radius-xs) 0 0;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  white-space: nowrap;
+}
+
+.nav-tab:hover {
+  color: var(--color-silver-light);
+  background: rgba(25, 25, 35, 0.8);
+  border-color: rgba(212, 214, 226, 0.2);
+}
+
+.nav-tab.active {
+  color: #fff;
+  background: linear-gradient(180deg, rgba(30, 20, 25, 0.9) 0%, rgba(15, 12, 16, 0.95) 100%);
+  border: 1px solid rgba(139, 10, 10, 0.6);
+  border-bottom: 2px solid #e02424;
+  margin-bottom: -2px;
+  box-shadow: 0 -2px 10px rgba(139, 10, 10, 0.25);
+}
+
+/* Medidores Vitais com Reflexo Vítreo */
+.progress-container {
+  width: 100%;
+  background: #040407;
+  border: 1px solid rgba(212, 214, 226, 0.14);
+  border-radius: var(--radius-xs);
+  height: 16px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.9);
+}
+
+.progress-fill {
+  height: 100%;
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+}
+
+.fill-health {
+  background: linear-gradient(90deg, #6b0707 0%, #c41818 70%, #eb3838 100%);
+  box-shadow: 0 0 10px rgba(220, 30, 30, 0.4);
+}
+
+.fill-stamina {
+  background: linear-gradient(90deg, #104364 0%, #1e70a8 70%, #389ee2 100%);
+  box-shadow: 0 0 10px rgba(56, 158, 226, 0.4);
+}
+
+.fill-xp {
+  background: linear-gradient(90deg, #6c4e12 0%, #b8861e 70%, #f1be47 100%);
+  box-shadow: 0 0 10px rgba(241, 190, 71, 0.4);
+}
+
+.fill-alert {
+  background: linear-gradient(90deg, #5c1808 0%, #b33612 70%, #f04e1e 100%);
+  box-shadow: 0 0 10px rgba(240, 78, 30, 0.4);
+}
+
+/* Badges e Insígnias */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-family: var(--font-family-body);
+}
+
+.badge-vampire {
+  background: rgba(139, 10, 10, 0.3);
+  color: #ff7b7b;
+  border: 1px solid rgba(224, 36, 36, 0.5);
+  text-shadow: 0 0 8px rgba(224, 36, 36, 0.5);
+}
+
+.badge-lycan {
+  background: rgba(184, 115, 9, 0.3);
+  color: #f7b045;
+  border: 1px solid rgba(184, 115, 9, 0.5);
+  text-shadow: 0 0 8px rgba(184, 115, 9, 0.5);
+}
+
+.badge-gold {
+  background: rgba(205, 163, 79, 0.15);
+  color: var(--color-gold-coin);
+  border: 1px solid rgba(205, 163, 79, 0.45);
+}
+
+/* Scrollbar & Seleção */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #040406;
+  border-left: 1px solid rgba(212, 214, 226, 0.08);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #2b2b3a 0%, #151520 100%);
+  border: 1px solid rgba(212, 214, 226, 0.2);
+  border-radius: var(--radius-xs);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #3d3d52 0%, #202030 100%);
+  border-color: var(--color-gold-coin);
+}
+
+::selection {
+  background: var(--color-blood-primary);
+  color: #fff;
+}
+
+/* Log de Combate e Eventos */
+.battle-log {
+  background: #030305;
+  border: 1px solid rgba(212, 214, 226, 0.12);
+  border-radius: var(--radius-xs);
+  padding: var(--space-3);
+  font-family: var(--font-family-mono);
+  font-size: 12px;
+  max-height: 240px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.95);
+}
+
+.log-entry {
+  line-height: 1.4;
+  padding: 3px 6px;
+  border-left: 2px solid transparent;
+  border-radius: 2px;
+}
+
+.log-entry.success { color: #69db7c; border-color: #69db7c; background: rgba(105, 219, 124, 0.06); }
+.log-entry.danger { color: #ff8787; border-color: #ff8787; background: rgba(255, 135, 135, 0.06); }
+.log-entry.gold { color: var(--color-gold-coin); border-color: var(--color-gold-coin); background: rgba(205, 163, 79, 0.06); }
+.log-entry.info { color: var(--color-silver-muted); }
+
+/* Animações Ambientais */
+@keyframes nightPulse {
+  0% { box-shadow: 0 0 10px rgba(139, 10, 10, 0.3), inset 0 0 10px rgba(0, 0, 0, 0.6); }
+  100% { box-shadow: 0 0 24px rgba(220, 25, 25, 0.6), inset 0 0 15px rgba(139, 10, 10, 0.4); }
+}
+
+.empty-state {
+  color: var(--color-text-muted);
+  font-size: 13px;
+  padding: var(--space-4);
+  text-align: center;
+  font-style: italic;
+}

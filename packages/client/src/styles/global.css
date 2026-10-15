@@ -1,0 +1,102 @@
+/* ==========================================================================
+   NOITE FAMINTA: SANGUE & PRATA - GLOBAL STYLESHEET
+   Orquestrador de Estilos Góticos & Atmosfera Dark Fantasy
+   ========================================================================== */
+
+@import './tokens.css';
+@import './components.css';
+@import './panels.css';
+@import './dungeons.css';
+@import './hideout.css';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==========================================================================
+   AMBIENTAÇÃO & ATMOSFERA GÓTICO-PUNK (DARK FANTASY HUD)
+   ========================================================================== */
+body {
+  background-color: var(--color-bg-base);
+  color: var(--color-text-main);
+  font-family: var(--font-family-body);
+  font-size: 14px;
+  line-height: 1.5;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  background-image: 
+    radial-gradient(ellipse at 50% 0%, rgba(139, 10, 10, 0.22) 0%, transparent 65%),
+    radial-gradient(circle at 90% 20%, rgba(205, 163, 79, 0.05) 0%, transparent 45%),
+    radial-gradient(circle at 10% 80%, rgba(184, 115, 9, 0.06) 0%, transparent 45%),
+    linear-gradient(180deg, #09090d 0%, #030305 100%);
+  background-attachment: fixed;
+}
+
+/* Vinheta Atmosférica de Tela Inteira */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.85), inset 0 0 40px rgba(0, 0, 0, 0.95);
+  z-index: 999;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: var(--space-4);
+  gap: var(--space-4);
+  position: relative;
+  z-index: 1;
+}
+
+/* Tipografia de Jogo */
+h1, h2, h3, h4 {
+  font-family: var(--font-family-display);
+  color: var(--color-text-bright);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* ==========================================================================
+   PAINÉIS DE JOGO (SUPERFÍCIES DE METAL FORJADO & ARDÓSIA)
+   ========================================================================== */
+.glass-panel {
+  background: linear-gradient(180deg, rgba(16, 16, 22, 0.92) 0%, rgba(9, 9, 13, 0.96) 100%);
+  border: 1px solid rgba(212, 214, 226, 0.12);
+  border-top: 1px solid rgba(212, 214, 226, 0.25);
+  border-radius: var(--radius-sm);
+  padding: var(--space-4);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  position: relative;
+}
+
+/* Detalhe Superior de Filete Carmesim */
+.glass-panel.accent-border {
+  border-color: rgba(139, 10, 10, 0.5);
+  border-top: 2px solid #b81414;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.9), 0 0 15px rgba(139, 10, 10, 0.15);
+}
+
+.card {
+  background: linear-gradient(180deg, rgba(20, 20, 28, 0.85) 0%, rgba(12, 12, 16, 0.9) 100%);
+  border: 1px solid rgba(212, 214, 226, 0.10);
+  border-radius: var(--radius-xs);
+  padding: var(--space-3);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 4px 14px rgba(0, 0, 0, 0.7);
+  transition: var(--transition-smooth);
+}
+
+.card:hover {
+  border-color: rgba(212, 214, 226, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.85);
+}

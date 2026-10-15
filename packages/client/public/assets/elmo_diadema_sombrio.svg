@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="100%" height="100%">
+  <defs>
+    <radialGradient id="helmSlotBg" cx="50%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#1c1626"/>
+      <stop offset="60%" stop-color="#100d17"/>
+      <stop offset="100%" stop-color="#050407"/>
+    </radialGradient>
+
+    <!-- Aura de Soberania & Fogo Espiritual Dourado/Roxo -->
+    <radialGradient id="royaltyAura" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fcc419" stop-opacity="0.45"/>
+      <stop offset="50%" stop-color="#9c36b5" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Metal Negro Forjado (Dark Steel) -->
+    <linearGradient id="blackIron" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#495057"/>
+      <stop offset="40%" stop-color="#212529"/>
+      <stop offset="80%" stop-color="#141619"/>
+      <stop offset="100%" stop-color="#0b0c0e"/>
+    </linearGradient>
+
+    <!-- Ouro Rúnico da Coroa -->
+    <linearGradient id="coronetGold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffd43b"/>
+      <stop offset="40%" stop-color="#fcc419"/>
+      <stop offset="70%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#8c6d00"/>
+    </linearGradient>
+
+    <!-- Ônix e Rubi Central -->
+    <radialGradient id="darkGem" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#e03131"/>
+      <stop offset="40%" stop-color="#212529"/>
+      <stop offset="100%" stop-color="#000"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Fundo -->
+  <rect width="300" height="300" rx="16" fill="url(#helmSlotBg)" stroke="#38294d" stroke-width="2"/>
+  <rect x="6" y="6" width="288" height="288" rx="12" fill="none" stroke="#fcc419" stroke-width="1" opacity="0.3"/>
+
+  <!-- Brilho Místico -->
+  <circle cx="150" cy="150" r="110" fill="url(#royaltyAura)"/>
+
+  <!-- Base da Coroa / Elmo Gótico Fechado -->
+  <!-- Silhueta Traseira do Elmo / Proteção de Nuca -->
+  <path d="M 85 130 C 85 220 215 220 215 130 Z" fill="#121316" stroke="#212529" stroke-width="2"/>
+
+  <!-- Pontas Góticas Ascendentes (Pináculos da Coroa) -->
+  <!-- Ponta Central Gigante -->
+  <polygon points="150,45 162,145 138,145" fill="url(#coronetGold)" stroke="#594400" stroke-width="1.5"/>
+  <line x1="150" y1="48" x2="150" y2="145" stroke="#fff" stroke-width="1.2" opacity="0.8"/>
+
+  <!-- Pontas Intermediárias Esquerda e Direita -->
+  <polygon points="110,65 125,145 98,145" fill="url(#coronetGold)" stroke="#594400" stroke-width="1.5"/>
+  <polygon points="190,65 202,145 175,145" fill="url(#coronetGold)" stroke="#594400" stroke-width="1.5"/>
+
+  <!-- Pontas Exteriores Menores -->
+  <polygon points="75,95 90,145 68,145" fill="url(#blackIron)" stroke="#495057" stroke-width="1.5"/>
+  <polygon points="225,95 232,145 210,145" fill="url(#blackIron)" stroke="#495057" stroke-width="1.5"/>
+
+  <!-- Arco Principal da Faixa do Diadema -->
+  <path d="M 60 145 Q 150 170 240 145 L 235 175 Q 150 200 65 175 Z" fill="url(#coronetGold)" stroke="#4d3a00" stroke-width="2"/>
+
+  <!-- Máscara / Protetor Nasal Gótico e Viseira das Trevas -->
+  <path d="M 142 165 L 158 165 L 155 240 L 145 240 Z" fill="url(#blackIron)" stroke="#594400" stroke-width="1.5"/>
+  <!-- Frestas de Visão Espectral dos Olhos -->
+  <path d="M 100 175 Q 120 185 138 180 L 136 190 Q 115 195 98 185 Z" fill="#000" stroke="#fcc419" stroke-width="1"/>
+  <path d="M 200 175 Q 180 185 162 180 L 164 190 Q 185 195 202 185 Z" fill="#000" stroke="#fcc419" stroke-width="1"/>
+  <!-- Olhar de Fogo Carmesim no Interior -->
+  <circle cx="118" cy="184" r="2.5" fill="#ff4d4f"/>
+  <circle cx="182" cy="184" r="2.5" fill="#ff4d4f"/>
+
+  <!-- Grande Rubi / Joia da Noite Central no Diadema -->
+  <circle cx="150" cy="162" r="12" fill="url(#darkGem)" stroke="#ffd43b" stroke-width="2"/>
+  <polygon points="150,154 158,162 150,170 142,162" fill="#ff6b6b" opacity="0.8"/>
+
+  <!-- Tag de Raridade e Efeito -->
+  <rect x="12" y="12" width="60" height="22" rx="4" fill="rgba(252, 196, 25, 0.25)" stroke="#fcc419" stroke-width="1"/>
+  <text x="42" y="27" fill="#ffd43b" font-size="11" font-weight="bold" font-family="sans-serif" text-anchor="middle">RARO</text>
+  <text x="288" y="285" fill="#ced4da" font-size="10" font-family="monospace" text-anchor="end">+15 SOBERANIA NOTURNA</text>
+</svg>

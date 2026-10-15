@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="vaultBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#06070a"/>
+      <stop offset="60%" stop-color="#0f1118"/>
+      <stop offset="100%" stop-color="#08090d"/>
+    </linearGradient>
+    <radialGradient id="goldGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffd54f" stop-opacity="0.8"/>
+      <stop offset="40%" stop-color="#ffb300" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#ff8f00" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ironBeams" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#424754"/>
+      <stop offset="50%" stop-color="#1f232b"/>
+      <stop offset="100%" stop-color="#111317"/>
+    </linearGradient>
+    <linearGradient id="goldCoinsGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff59d"/>
+      <stop offset="50%" stop-color="#fbc02d"/>
+      <stop offset="100%" stop-color="#c49000"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fundo de Catacumba de Pedra -->
+  <rect width="600" height="400" fill="url(#vaultBg)"/>
+
+  <!-- Brilho Dourado do Tesouro no Centro -->
+  <circle cx="300" cy="270" r="140" fill="url(#goldGlow)"/>
+
+  <!-- Arcos Góticos de Sustentação da Abóbada Subterrânea -->
+  <path d="M 50 400 L 50 180 Q 300 30 550 180 L 550 400" stroke="#1d212b" stroke-width="24" fill="none"/>
+  <path d="M 120 400 L 120 220 Q 300 90 480 220 L 480 400" stroke="#252b38" stroke-width="16" fill="none"/>
+  <path d="M 120 220 Q 300 90 480 220" stroke="#cda34f" stroke-width="2" fill="none" opacity="0.4"/>
+
+  <!-- Alvenaria de Blocos de Ardósia das Catacumbas -->
+  <line x1="0" y1="120" x2="600" y2="120" stroke="#11141c" stroke-width="2"/>
+  <line x1="0" y1="200" x2="600" y2="200" stroke="#11141c" stroke-width="2"/>
+  <line x1="0" y1="280" x2="600" y2="280" stroke="#11141c" stroke-width="2"/>
+
+  <!-- Grade Pesada de Ferro Forjado ao Fundo com Trancas e Pontas -->
+  <g stroke="#2f3440" stroke-width="5" opacity="0.75">
+    <line x1="160" y1="120" x2="160" y2="350"/>
+    <line x1="200" y1="100" x2="200" y2="350"/>
+    <line x1="240" y1="90" x2="240" y2="350"/>
+    <line x1="360" y1="90" x2="360" y2="350"/>
+    <line x1="400" y1="100" x2="400" y2="350"/>
+    <line x1="440" y1="120" x2="440" y2="350"/>
+    <line x1="150" y1="170" x2="450" y2="170"/>
+    <line x1="150" y1="240" x2="450" y2="240"/>
+  </g>
+
+  <!-- Pilares Maciços com Correntes Penduradas -->
+  <rect x="60" y="80" width="50" height="320" fill="url(#ironBeams)" stroke="#111317" stroke-width="2"/>
+  <rect x="490" y="80" width="50" height="320" fill="url(#ironBeams)" stroke="#111317" stroke-width="2"/>
+
+  <!-- Correntes de Ferro -->
+  <path d="M 85 140 Q 110 210 140 270" stroke="#545b6e" stroke-width="4" stroke-dasharray="6,4" fill="none"/>
+  <path d="M 515 140 Q 490 210 460 270" stroke="#545b6e" stroke-width="4" stroke-dasharray="6,4" fill="none"/>
+
+  <!-- Pilhas de Ouro, Moedas e Barras ao Redor do Baú -->
+  <ellipse cx="300" cy="335" rx="160" ry="40" fill="#694e07" opacity="0.8"/>
+  <path d="M 170 340 Q 230 300 290 325 Q 360 295 430 340 Z" fill="url(#goldCoinsGrad)"/>
+  <!-- Moedas e Detalhes de Ouro Brilhante -->
+  <circle cx="210" cy="328" r="7" fill="#fff59d" stroke="#b78103"/>
+  <circle cx="225" cy="323" r="8" fill="#fbc02d" stroke="#b78103"/>
+  <circle cx="240" cy="326" r="7" fill="#fdd835" stroke="#b78103"/>
+  <circle cx="370" cy="325" r="8" fill="#fbc02d" stroke="#b78103"/>
+  <circle cx="388" cy="320" r="7" fill="#fff59d" stroke="#b78103"/>
+  <circle cx="402" cy="327" r="7" fill="#fdd835" stroke="#b78103"/>
+  <!-- Lingotes de Prata e Ouro -->
+  <polygon points="180,345 210,340 230,348 200,353" fill="#cfd8dc" stroke="#546e7a"/>
+  <polygon points="380,345 410,340 430,348 400,353" fill="url(#goldCoinsGrad)" stroke="#b78103"/>
+
+  <!-- O Grande Baú de Ferro Forjado e Carvalho Negro -->
+  <!-- Base do Baú -->
+  <polygon points="210,240 390,240 410,315 190,315" fill="#181310" stroke="#2e251e" stroke-width="3"/>
+  <!-- Tampa do Baú Arqueada Aberta com Tesouro Transbordando -->
+  <polygon points="200,195 400,195 390,240 210,240" fill="#29201a" stroke="#4a3b30" stroke-width="3"/>
+  <!-- Cintas Metálicas de Reforço com Rebites -->
+  <line x1="250" y1="195" x2="250" y2="315" stroke="#cda34f" stroke-width="4"/>
+  <line x1="350" y1="195" x2="350" y2="315" stroke="#cda34f" stroke-width="4"/>
+  <circle cx="250" cy="215" r="3" fill="#1c1305"/>
+  <circle cx="250" cy="275" r="3" fill="#1c1305"/>
+  <circle cx="350" cy="215" r="3" fill="#1c1305"/>
+  <circle cx="350" cy="275" r="3" fill="#1c1305"/>
+
+  <!-- Tranca Frontal com Selo de Caveira/Rúnico -->
+  <rect x="285" y="230" width="30" height="35" rx="3" fill="#cda34f" stroke="#7a5c1b" stroke-width="2"/>
+  <circle cx="300" cy="245" r="4" fill="#1c1305"/>
+  <line x1="300" y1="245" x2="300" y2="258" stroke="#1c1305" stroke-width="2"/>
+
+  <!-- Ouro Transbordando da Boca do Baú -->
+  <ellipse cx="300" cy="240" rx="75" ry="14" fill="url(#goldCoinsGrad)" stroke="#cda34f" stroke-width="2"/>
+  <circle cx="270" cy="238" r="5" fill="#fff9c4"/>
+  <circle cx="305" cy="236" r="6" fill="#fff9c4"/>
+  <circle cx="330" cy="239" r="5" fill="#fff9c4"/>
+
+  <!-- Lanternas Góticas de Óleo nos Pilares -->
+  <rect x="75" y="160" width="20" height="32" fill="#1c1d24" stroke="#cda34f" stroke-width="1.5"/>
+  <polygon points="75,160 95,160 85,145" fill="#cda34f"/>
+  <circle cx="85" cy="176" r="6" fill="#ffd54f"/>
+  <rect x="505" y="160" width="20" height="32" fill="#1c1d24" stroke="#cda34f" stroke-width="1.5"/>
+  <polygon points="505,160 525,160 515,145" fill="#cda34f"/>
+  <circle cx="515" cy="176" r="6" fill="#ffd54f"/>
+</svg>

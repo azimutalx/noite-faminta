@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="cryptBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#050608"/>
+      <stop offset="50%" stop-color="#0a0f14"/>
+      <stop offset="100%" stop-color="#030406"/>
+    </linearGradient>
+    <radialGradient id="spectralTorch" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#69db7c" stop-opacity="0.85"/>
+      <stop offset="40%" stop-color="#2b8a3e" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#08210c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sarcophagusStone" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2e3846"/>
+      <stop offset="50%" stop-color="#1b212b"/>
+      <stop offset="100%" stop-color="#0e1218"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="400" fill="url(#cryptBg)"/>
+
+  <!-- Brilho Espectral das Tochas Alquímicas Verdes nos Cantos -->
+  <circle cx="90" cy="160" r="120" fill="url(#spectralTorch)"/>
+  <circle cx="510" cy="160" r="120" fill="url(#spectralTorch)"/>
+
+  <!-- Abóbadas de Pedra Gótica em Profundidade / Corredor de Catacumbas -->
+  <path d="M 0 350 L 150 180 Q 300 110 450 180 L 600 350" stroke="#161e27" stroke-width="18" fill="none"/>
+  <path d="M 70 370 L 210 210 Q 300 150 390 210 L 530 370" stroke="#222d3b" stroke-width="12" fill="none"/>
+
+  <!-- Alvenaria e Nichos Funerários nas Paredes Laterais -->
+  <!-- Esquerda -->
+  <rect x="20" y="160" width="100" height="45" rx="3" fill="#080b0f" stroke="#283545" stroke-width="2"/>
+  <rect x="25" y="165" width="90" height="35" rx="2" fill="#121820"/>
+  <rect x="20" y="225" width="100" height="45" rx="3" fill="#080b0f" stroke="#283545" stroke-width="2"/>
+  <rect x="25" y="230" width="90" height="35" rx="2" fill="#121820"/>
+  <!-- Direita -->
+  <rect x="480" y="160" width="100" height="45" rx="3" fill="#080b0f" stroke="#283545" stroke-width="2"/>
+  <rect x="485" y="165" width="90" height="35" rx="2" fill="#121820"/>
+  <rect x="480" y="225" width="100" height="45" rx="3" fill="#080b0f" stroke="#283545" stroke-width="2"/>
+  <rect x="485" y="230" width="90" height="35" rx="2" fill="#121820"/>
+
+  <!-- Estandartes Góticos Desgastados Pendurados -->
+  <polygon points="170,120 200,120 200,240 185,260 170,240" fill="#371018" stroke="#681d2c" stroke-width="1.5"/>
+  <polygon points="400,120 430,120 430,240 415,260 400,240" fill="#1a1c30" stroke="#353a5c" stroke-width="1.5"/>
+  <circle cx="185" cy="180" r="8" fill="#cda34f" opacity="0.7"/>
+  <circle cx="415" cy="180" r="8" fill="#cda34f" opacity="0.7"/>
+
+  <!-- Grande Sarcófago dos Fundadores / Líder Mercenário ao Centro -->
+  <polygon points="210,270 390,270 420,360 180,360" fill="url(#sarcophagusStone)" stroke="#3e4a5c" stroke-width="3"/>
+  <!-- Tampa do Sarcófago com Efígie Esculpida -->
+  <polygon points="220,250 380,250 390,270 210,270" fill="#2d3846" stroke="#4f5e74" stroke-width="2"/>
+  <!-- Espada Talhada na Pedra da Tampa -->
+  <line x1="300" y1="253" x2="300" y2="267" stroke="#cda34f" stroke-width="2"/>
+  <line x1="293" y1="257" x2="307" y2="257" stroke="#cda34f" stroke-width="2"/>
+
+  <!-- Baús de Equipamento e Provisões de Mercenários -->
+  <rect x="130" y="320" width="55" height="40" rx="3" fill="#1a1410" stroke="#3e3025" stroke-width="2"/>
+  <line x1="130" y1="335" x2="185" y2="335" stroke="#cda34f" stroke-width="1.5"/>
+  <rect x="420" y="325" width="50" height="35" rx="3" fill="#1a1410" stroke="#3e3025" stroke-width="2"/>
+  <line x1="420" y1="338" x2="470" y2="338" stroke="#cda34f" stroke-width="1.5"/>
+
+  <!-- Tochas Espectrais nas Paredes -->
+  <!-- Esquerda -->
+  <rect x="85" y="165" width="8" height="40" fill="#1e2229"/>
+  <polygon points="80,165 98,165 93,155 85,155" fill="#3b4252"/>
+  <path d="M 86 155 Q 89 130 96 142 Q 90 140 86 155 Z" fill="#69db7c"/>
+  <circle cx="91" cy="144" r="4" fill="#d3f9d8"/>
+  <!-- Direita -->
+  <rect x="505" y="165" width="8" height="40" fill="#1e2229"/>
+  <polygon points="500,165 518,165 513,155 505,155" fill="#3b4252"/>
+  <path d="M 506 155 Q 509 130 516 142 Q 510 140 506 155 Z" fill="#69db7c"/>
+  <circle cx="511" cy="144" r="4" fill="#d3f9d8"/>
+
+  <!-- Névoa Espiritual e Cinzas no Solo -->
+  <path d="M 0 370 Q 200 355 400 372 T 600 365 L 600 400 L 0 400 Z" fill="#08140c" opacity="0.6"/>
+</svg>

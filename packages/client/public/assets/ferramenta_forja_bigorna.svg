@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="100%" height="100%">
+  <defs>
+    <radialGradient id="forgeSlotBg" cx="50%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#24140e"/>
+      <stop offset="60%" stop-color="#140b08"/>
+      <stop offset="100%" stop-color="#080403"/>
+    </radialGradient>
+
+    <!-- Fogo Alquímico / Brasas Ardentes -->
+    <radialGradient id="forgeGlow" cx="50%" cy="65%" r="60%">
+      <stop offset="0%" stop-color="#ff922b" stop-opacity="0.8"/>
+      <stop offset="35%" stop-color="#f03e3e" stop-opacity="0.5"/>
+      <stop offset="70%" stop-color="#7a1400" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Ferro Escuro da Bigorna -->
+    <linearGradient id="ironAnvil" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1a1d20"/>
+      <stop offset="40%" stop-color="#343a40"/>
+      <stop offset="70%" stop-color="#212529"/>
+      <stop offset="100%" stop-color="#111315"/>
+    </linearGradient>
+
+    <!-- Face Polida de Impacto da Bigorna -->
+    <linearGradient id="faceSteel" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#adb5bd"/>
+      <stop offset="50%" stop-color="#f1f3f5"/>
+      <stop offset="100%" stop-color="#495057"/>
+    </linearGradient>
+
+    <!-- Metal Incandescente Aquecido -->
+    <linearGradient id="hotIngot" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffe066"/>
+      <stop offset="50%" stop-color="#ff922b"/>
+      <stop offset="100%" stop-color="#f03e3e"/>
+    </linearGradient>
+
+    <!-- Cabo do Martelo de Madeira Nobre -->
+    <linearGradient id="woodHandle" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8c5b36"/>
+      <stop offset="50%" stop-color="#543319"/>
+      <stop offset="100%" stop-color="#311c0c"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fundo -->
+  <rect width="300" height="300" rx="16" fill="url(#forgeSlotBg)" stroke="#5c301b" stroke-width="2"/>
+  <rect x="6" y="6" width="288" height="288" rx="12" fill="none" stroke="#ff922b" stroke-width="1" opacity="0.3"/>
+
+  <!-- Brilho das Brasas -->
+  <circle cx="150" cy="180" r="110" fill="url(#forgeGlow)"/>
+
+  <!-- Faíscas de Forjamento Quente -->
+  <circle cx="95" cy="110" r="2.5" fill="#ffe066"/>
+  <circle cx="115" cy="85" r="2" fill="#ff922b"/>
+  <circle cx="175" cy="75" r="2" fill="#ffe066"/>
+  <circle cx="210" cy="100" r="3" fill="#ff6b6b"/>
+  <circle cx="135" cy="65" r="1.5" fill="#fff"/>
+  <circle cx="190" cy="120" r="2.5" fill="#ffe066"/>
+
+  <!-- Base / Cepo de Madeira Reforçado com Cintas de Ferro -->
+  <path d="M 80 230 L 220 230 L 235 285 L 65 285 Z" fill="#2b1a11" stroke="#160c07" stroke-width="2"/>
+  <line x1="75" y1="250" x2="225" y2="250" stroke="#495057" stroke-width="4"/>
+  <line x1="70" y1="270" x2="230" y2="270" stroke="#495057" stroke-width="4"/>
+  <circle cx="100" cy="250" r="2" fill="#ced4da"/>
+  <circle cx="150" cy="250" r="2" fill="#ced4da"/>
+  <circle cx="200" cy="250" r="2" fill="#ced4da"/>
+
+  <!-- Pé e Corpo da Bigorna (Estilo Clássico London Pattern) -->
+  <path d="M 95 230 L 205 230 L 180 180 L 195 150 L 105 150 L 120 180 Z" fill="url(#ironAnvil)" stroke="#111315" stroke-width="2"/>
+
+  <!-- Chifre Cônico da Bigorna (Esquerda) e Face Superior (Direita) -->
+  <!-- Chifre Redondo -->
+  <path d="M 50 145 Q 95 146 110 150 L 110 135 Q 95 138 50 145 Z" fill="url(#faceSteel)" stroke="#212529" stroke-width="1.5"/>
+  <!-- Mesa / Face Plana de Impacto -->
+  <rect x="105" y="132" width="125" height="18" rx="2" fill="url(#faceSteel)" stroke="#212529" stroke-width="1.5"/>
+  <!-- Rabo de Andorinha / Chanfro Direito -->
+  <polygon points="230,132 250,135 240,150 230,150" fill="url(#faceSteel)" stroke="#212529" stroke-width="1.5"/>
+  <!-- Furo Quadrado (Hardie Hole) -->
+  <rect x="210" y="135" width="8" height="6" fill="#111315"/>
+
+  <!-- Lingote / Barra Incandescente em Cima da Bigorna -->
+  <rect x="130" y="126" width="55" height="7" rx="1.5" fill="url(#hotIngot)" stroke="#ffe066" stroke-width="0.8"/>
+
+  <!-- Martelo Pesado de Forja Transversal (Warhammer / Forging Sledge) -->
+  <g transform="rotate(-30, 160, 100)">
+    <!-- Cabo Longo -->
+    <rect x="155" y="40" width="10" height="150" rx="4" fill="url(#woodHandle)" stroke="#211309" stroke-width="1.5"/>
+    <rect x="154" y="145" width="12" height="40" rx="3" fill="#111315" stroke="#495057" stroke-width="1"/>
+    <!-- Cabeça de Aço Maciço do Martelo -->
+    <rect x="135" y="45" width="50" height="30" rx="4" fill="url(#ironAnvil)" stroke="#495057" stroke-width="2"/>
+    <rect x="133" y="48" width="5" height="24" rx="1" fill="url(#faceSteel)"/>
+    <polygon points="185,45 195,60 185,75" fill="url(#faceSteel)" stroke="#343a40" stroke-width="1"/>
+    <!-- Runa Alquímica Ardente no Martelo -->
+    <polygon points="160,54 165,60 160,66 155,60" fill="#ff922b" stroke="#ffe066" stroke-width="1"/>
+  </g>
+
+  <!-- Tag de Ferramenta & Status -->
+  <rect x="12" y="12" width="95" height="22" rx="4" fill="rgba(255, 146, 43, 0.25)" stroke="#ff922b" stroke-width="1"/>
+  <text x="59" y="27" fill="#ffa94d" font-size="11" font-weight="bold" font-family="sans-serif" text-anchor="middle">FERRAMENTA</text>
+  <text x="288" y="285" fill="#ced4da" font-size="10" font-family="monospace" text-anchor="end">FORJA RÚNICA</text>
+</svg>

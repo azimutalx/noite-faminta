@@ -1,0 +1,79 @@
+:root {
+  /* Paleta Gótico-Punk Autêntica */
+  --color-bg-base: #060608;
+  --color-bg-surface: #0e0e13;
+  --color-bg-elevated: #15151d;
+  --color-bg-glass: rgba(14, 14, 19, 0.75);
+
+  --color-blood-primary: #8b0a0a;
+  --color-blood-hover: #ab1212;
+  --color-blood-glow: rgba(210, 25, 25, 0.35);
+
+  --color-lupine-amber: #b87309;
+  --color-lupine-glow: rgba(184, 115, 9, 0.35);
+
+  --color-silver-light: #d4d6e2;
+  --color-silver-muted: #8d8f9f;
+  --color-gold-coin: #cda34f;
+  --color-gold-glow: rgba(205, 163, 79, 0.25);
+
+  --color-text-bright: #f2f3f7;
+  --color-text-main: #c7c9d6;
+  --color-text-muted: #6f7182;
+
+  --color-border-subtle: rgba(212, 214, 226, 0.10);
+  --color-border-accent: rgba(139, 10, 10, 0.45);
+  --color-border-gold: rgba(205, 163, 79, 0.35);
+
+  /* Tipografia */
+  --font-family-display: 'Cinzel', serif;
+  --font-family-body: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-mono: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', monospace;
+
+  /* Superfícies & Relevos Táteis de Jogo */
+  --surface-panel: #0a0a0f;
+  --surface-panel-border: 1px solid rgba(212, 214, 226, 0.12);
+  --surface-panel-inset: inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 -1px 0 rgba(0, 0, 0, 0.8);
+  --metal-bevel-top: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  --metal-bevel-bottom: inset 0 -2px 4px rgba(0, 0, 0, 0.8);
+
+  /* Grelha de Espaçamento Estrita */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+
+  /* Bordas Sóbrias (Design System Rígido de Jogo) */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+
+  /* Raridades de Itens de RPG Clássico */
+  --rarity-common: #8d8f9f;
+  --rarity-magic: #339af0;
+  --rarity-rare: #fcc419;
+  --rarity-epic: #da77f2;
+  --rarity-legendary: #ff6b6b;
+
+  /* Gemas de Atributo da Árvore Híbrida */
+  --gem-ruby: #e03131;
+  --gem-ruby-glow: rgba(224, 49, 49, 0.4);
+  --gem-sapphire: #339af0;
+  --gem-sapphire-glow: rgba(51, 154, 240, 0.4);
+  --gem-emerald: #51cf66;
+  --gem-emerald-glow: rgba(81, 207, 102, 0.4);
+  --gem-amethyst: #da77f2;
+  --gem-amethyst-glow: rgba(218, 119, 242, 0.4);
+
+  /* Sombras Sóbrias e Atmosféricas de Fantasia Sombria */
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.85);
+  --shadow-glow: 0 0 16px var(--color-blood-glow);
+  --shadow-gold-glow: 0 0 16px var(--color-gold-glow);
+  --shadow-inner-groove: inset 0 2px 6px rgba(0, 0, 0, 0.9), inset 0 0 1px rgba(255, 255, 255, 0.1);
+  --transition-smooth: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}

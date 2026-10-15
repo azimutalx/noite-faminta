@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="skyMan" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#040509"/>
+      <stop offset="60%" stop-color="#120c18"/>
+      <stop offset="100%" stop-color="#241122"/>
+    </linearGradient>
+    <linearGradient id="windowCrimson" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff8787"/>
+      <stop offset="60%" stop-color="#c92a2a"/>
+      <stop offset="100%" stop-color="#5c0808"/>
+    </linearGradient>
+    <radialGradient id="manorMoon" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f8f9fa" stop-opacity="0.9"/>
+      <stop offset="35%" stop-color="#da77f2" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#241122" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Céu Noturno & Grande Lua cheia Gótica -->
+  <rect width="800" height="450" fill="url(#skyMan)"/>
+  <circle cx="400" cy="110" r="120" fill="url(#manorMoon)"/>
+  <circle cx="400" cy="110" r="55" fill="#f1f3f5"/>
+  <circle cx="410" cy="100" r="48" fill="#e9ecef" opacity="0.6"/>
+
+  <!-- Colinas e Relevo de Ardósia -->
+  <path d="M0,280 Q200,260 400,270 T800,265 L800,450 L0,450 Z" fill="#09060c"/>
+
+  <!-- Silhueta da Mansão Gótica Aristocrática -->
+  <g id="mansao">
+    <!-- Torre Esquerda -->
+    <rect x="220" y="160" width="60" height="180" fill="#130e18" stroke="#2b1f35" stroke-width="2"/>
+    <polygon points="215,160 250,90 285,160" fill="#1d1525" stroke="#3b2b48" stroke-width="2"/>
+    <!-- Janela Ogival da Torre Esquerda -->
+    <path d="M240,190 Q250,175 260,190 L260,230 L240,230 Z" fill="url(#windowCrimson)"/>
+
+    <!-- Torre Direita -->
+    <rect x="520" y="160" width="60" height="180" fill="#130e18" stroke="#2b1f35" stroke-width="2"/>
+    <polygon points="515,160 550,90 585,160" fill="#1d1525" stroke="#3b2b48" stroke-width="2"/>
+    <!-- Janela Ogival da Torre Direita -->
+    <path d="M540,190 Q550,175 560,190 L560,230 L540,230 Z" fill="url(#windowCrimson)"/>
+
+    <!-- Corpo Central da Mansão -->
+    <rect x="270" y="190" width="260" height="150" fill="#17111d" stroke="#2e2138" stroke-width="2"/>
+    <!-- Telhado Principal Chanfrado -->
+    <polygon points="260,190 400,120 540,190" fill="#201828" stroke="#3b2b48" stroke-width="2"/>
+
+    <!-- Rosa Gótica / Janela Circular Central -->
+    <circle cx="400" cy="170" r="24" fill="url(#windowCrimson)" stroke="#3b2b48" stroke-width="2"/>
+    <circle cx="400" cy="170" r="16" fill="none" stroke="#2e2138" stroke-width="1.5"/>
+    <line x1="400" y1="146" x2="400" y2="194" stroke="#2e2138" stroke-width="1.5"/>
+    <line x1="376" y1="170" x2="424" y2="170" stroke="#2e2138" stroke-width="1.5"/>
+
+    <!-- Janelas Centrais do Primeiro Andar -->
+    <path d="M310,230 Q325,215 340,230 L340,270 L310,270 Z" fill="url(#windowCrimson)"/>
+    <path d="M460,230 Q475,215 490,230 L490,270 L460,270 Z" fill="url(#windowCrimson)"/>
+
+    <!-- Grande Portal Ogival de Entrada com Escadaria de Pedra -->
+    <path d="M375,280 Q400,260 425,280 L425,340 L375,340 Z" fill="#070408" stroke="#4a365b" stroke-width="3"/>
+    <!-- Portas de Ferro Forjado -->
+    <line x1="400" y1="265" x2="400" y2="340" stroke="#4a365b" stroke-width="2"/>
+
+    <!-- Escadarias de Pedra Descendo -->
+    <polygon points="340,340 460,340 480,380 320,380" fill="#130e18" stroke="#261b2f" stroke-width="2"/>
+    <line x1="330" y1="360" x2="470" y2="360" stroke="#0a070c" stroke-width="2"/>
+  </g>
+
+  <!-- Muros de Pedra & Portões de Ferro com Gárgulas -->
+  <g id="portao">
+    <!-- Muro Frontal -->
+    <rect x="0" y="360" width="300" height="90" fill="#0c0810" stroke="#1d1425" stroke-width="2"/>
+    <rect x="500" y="360" width="300" height="90" fill="#0c0810" stroke="#1d1425" stroke-width="2"/>
+
+    <!-- Pilares de Pedra do Portão -->
+    <rect x="280" y="310" width="35" height="110" fill="#191122" stroke="#38294a" stroke-width="2"/>
+    <polygon points="275,310 297,290 320,310" fill="#241830" stroke="#4a365b" stroke-width="2"/>
+    <!-- Gárgula Esquerda -->
+    <path d="M290,285 Q280,270 295,275 Q310,270 305,285 Z" fill="#38294a"/>
+
+    <rect x="485" y="310" width="35" height="110" fill="#191122" stroke="#38294a" stroke-width="2"/>
+    <polygon points="480,310 502,290 525,310" fill="#241830" stroke="#4a365b" stroke-width="2"/>
+    <!-- Gárgula Direita -->
+    <path d="M495,285 Q485,270 500,275 Q515,270 510,285 Z" fill="#38294a"/>
+
+    <!-- Portão de Ferro com Lanças Pontiagudas -->
+    <g stroke="#3b2b48" stroke-width="3">
+      <line x1="325" y1="330" x2="325" y2="430"/>
+      <line x1="345" y1="320" x2="345" y2="430"/>
+      <line x1="365" y1="315" x2="365" y2="430"/>
+      <line x1="385" y1="310" x2="385" y2="430"/>
+      <line x1="415" y1="310" x2="415" y2="430"/>
+      <line x1="435" y1="315" x2="435" y2="430"/>
+      <line x1="455" y1="320" x2="455" y2="430"/>
+      <line x1="475" y1="330" x2="475" y2="430"/>
+      <!-- Travessas -->
+      <line x1="315" y1="350" x2="485" y2="350" stroke-width="4"/>
+      <line x1="315" y1="400" x2="485" y2="400" stroke-width="4"/>
+    </g>
+  </g>
+
+  <!-- Moldura Gótica -->
+  <rect x="0" y="0" width="800" height="450" fill="none" stroke="rgba(212, 214, 226, 0.15)" stroke-width="2"/>
+</svg>

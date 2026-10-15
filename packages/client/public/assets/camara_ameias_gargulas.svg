@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="parapetSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#020306"/>
+      <stop offset="50%" stop-color="#0b0e17"/>
+      <stop offset="100%" stop-color="#141a29"/>
+    </linearGradient>
+    <radialGradient id="moonBlood" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff8a80" stop-opacity="0.95"/>
+      <stop offset="35%" stop-color="#c62828" stop-opacity="0.5"/>
+      <stop offset="70%" stop-color="#370b14" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="stoneRampart" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#181c24"/>
+      <stop offset="50%" stop-color="#2a3240"/>
+      <stop offset="100%" stop-color="#141820"/>
+    </linearGradient>
+    <linearGradient id="gargoyleStone" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b4252"/>
+      <stop offset="50%" stop-color="#20242c"/>
+      <stop offset="100%" stop-color="#111317"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="400" fill="url(#parapetSky)"/>
+
+  <!-- Grande Lua de Sangue no Horizonte Sombrio -->
+  <circle cx="150" cy="120" r="85" fill="url(#moonBlood)"/>
+  <circle cx="150" cy="120" r="50" fill="#ffcdd2" opacity="0.9"/>
+  <!-- Crateras da Lua -->
+  <circle cx="130" cy="105" r="9" fill="#ef9a9a" opacity="0.6"/>
+  <circle cx="165" cy="135" r="14" fill="#ef9a9a" opacity="0.6"/>
+
+  <!-- Névoa da Metrópole e Silhuetas Góticas no Horizonte -->
+  <path d="M 0 280 L 70 230 L 110 260 L 170 190 L 230 250 L 320 200 L 400 270 L 600 220 L 600 400 L 0 400 Z" fill="#06070b"/>
+  <!-- Torres com Pináculos da Cidade Sombria -->
+  <polygon points="65,230 75,170 85,230" fill="#040407"/>
+  <polygon points="165,190 172,130 180,190" fill="#040407"/>
+  <polygon points="315,200 322,145 330,200" fill="#040407"/>
+
+  <!-- Névoa Rastejante Entre a Muralha e a Cidade -->
+  <path d="M 0 260 Q 200 240 400 265 T 600 250 L 600 300 L 0 300 Z" fill="#111722" opacity="0.5"/>
+
+  <!-- Baluarte e Ameias de Pedra Gótica (Primeiro Plano) -->
+  <polygon points="0,270 600,270 600,400 0,400" fill="url(#stoneRampart)" stroke="#394254" stroke-width="3"/>
+  <line x1="0" y1="320" x2="600" y2="320" stroke="#10131a" stroke-width="3"/>
+
+  <!-- Dentes das Ameias (Merlões Góticos com Pontas) -->
+  <rect x="20" y="220" width="70" height="55" fill="url(#stoneRampart)" stroke="#394254" stroke-width="2"/>
+  <rect x="130" y="220" width="70" height="55" fill="url(#stoneRampart)" stroke="#394254" stroke-width="2"/>
+  <rect x="240" y="220" width="70" height="55" fill="url(#stoneRampart)" stroke="#394254" stroke-width="2"/>
+  <rect x="350" y="220" width="70" height="55" fill="url(#stoneRampart)" stroke="#394254" stroke-width="2"/>
+
+  <!-- Frestas de Flecheiras nas Ameias -->
+  <line x1="55" y1="235" x2="55" y2="255" stroke="#080a0e" stroke-width="4"/>
+  <line x1="165" y1="235" x2="165" y2="255" stroke="#080a0e" stroke-width="4"/>
+  <line x1="275" y1="235" x2="275" y2="255" stroke="#080a0e" stroke-width="4"/>
+  <line x1="385" y1="235" x2="385" y2="255" stroke="#080a0e" stroke-width="4"/>
+
+  <!-- O Plinto e a Imponente Gárgula Sentinela (Direita) -->
+  <!-- Plinto Avançado na Quina da Muralha -->
+  <polygon points="440,240 580,240 560,380 430,380" fill="#1b202a" stroke="#48536a" stroke-width="3"/>
+  <path d="M 440 240 Q 510 260 580 240" stroke="#cda34f" stroke-width="2" fill="none"/>
+
+  <!-- Corpo e Silhueta da Gárgula Alada de Pedra -->
+  <!-- Asa Esquerda Aberta da Gárgula -->
+  <path d="M 470 190 Q 420 120 400 70 Q 440 100 455 130 Q 480 150 490 180 Z" fill="url(#gargoyleStone)" stroke="#525d75" stroke-width="2"/>
+  <!-- Asa Direita da Gárgula -->
+  <path d="M 520 180 Q 560 110 590 60 Q 565 95 545 130 Q 530 150 520 180 Z" fill="url(#gargoyleStone)" stroke="#525d75" stroke-width="2"/>
+  <!-- Garras Agarradas ao Beiral do Plinto -->
+  <ellipse cx="460" cy="240" rx="14" ry="8" fill="#121418" stroke="#525d75" stroke-width="1.5"/>
+  <ellipse cx="505" cy="240" rx="14" ry="8" fill="#121418" stroke="#525d75" stroke-width="1.5"/>
+  <!-- Corpo Musculoso da Gárgula Agachada -->
+  <path d="M 455 240 Q 450 180 480 160 Q 515 180 515 240 Z" fill="url(#gargoyleStone)" stroke="#525d75" stroke-width="2"/>
+  <!-- Cabeça Feral Demoníaca com Chifres Pontiagudos -->
+  <circle cx="482" cy="145" r="22" fill="url(#gargoyleStone)" stroke="#525d75" stroke-width="2"/>
+  <!-- Chifres -->
+  <path d="M 470 135 Q 455 105 440 110 Q 460 125 470 135 Z" fill="#20242c" stroke="#525d75" stroke-width="1.5"/>
+  <path d="M 495 135 Q 510 105 525 110 Q 505 125 495 135 Z" fill="#20242c" stroke="#525d75" stroke-width="1.5"/>
+  <!-- Olhos Incandescentes de Fogo / Sangue da Gárgula -->
+  <circle cx="475" cy="144" r="3.5" fill="#ff1744"/>
+  <circle cx="489" cy="144" r="3.5" fill="#ff1744"/>
+  <circle cx="475" cy="144" r="1.5" fill="#ffffff"/>
+  <circle cx="489" cy="144" r="1.5" fill="#ffffff"/>
+
+  <!-- Braseiro de Fogo na Ameia Esquerda -->
+  <polygon points="100,205 125,205 120,225 105,225" fill="#2b313d" stroke="#546078" stroke-width="1.5"/>
+  <!-- Chamas do Braseiro -->
+  <path d="M 103 205 Q 112 175 116 195 Q 120 180 122 205 Z" fill="#ff9100"/>
+  <circle cx="112" cy="195" r="8" fill="#ffab00" opacity="0.6"/>
+</svg>

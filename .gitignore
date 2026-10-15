@@ -1,0 +1,55 @@
+# Logs e Depuração
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependências
+node_modules
+dist
+dist-ssr
+*.local
+
+# Variáveis de Ambiente e Segredos (CRÍTICO DEVSECOPS)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.cert
+*.crt
+secrets.json
+
+# Terraform e Infraestrutura (CRÍTICO DEVSECOPS)
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+
+# IDE e Sistema Operacional
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Cobertura de Testes e Relatórios
+coverage/
+.nyc_output/
+.scannerwork/

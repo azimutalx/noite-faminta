@@ -1,0 +1,30 @@
+{
+  "name": "noite-faminta",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Noite Faminta: Sangue & Prata - MMORPG Idle com Economia Persistente e DevSecOps",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "vitest run"
+  },
+  "keywords": [
+    "mmorpg",
+    "idle-game",
+    "devsecops",
+    "vampire",
+    "werewolf",
+    "tibia-coins",
+    "terraform"
+  ],
+  "author": "Noite Faminta Team",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "vitest": "^5.0.4"
+  }
+}

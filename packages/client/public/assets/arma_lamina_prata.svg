@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="100%" height="100%">
+  <defs>
+    <!-- Fundo de slot com gradiente escuro e vinheta -->
+    <radialGradient id="slotBg" cx="50%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#181c26"/>
+      <stop offset="60%" stop-color="#0c0e14"/>
+      <stop offset="100%" stop-color="#050608"/>
+    </radialGradient>
+
+    <!-- Brilho Carmesim das Runas -->
+    <radialGradient id="crimsonAura" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff1a40" stop-opacity="0.8"/>
+      <stop offset="40%" stop-color="#b00020" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Gradiente de Prata & Aço Nobre da Lâmina -->
+    <linearGradient id="silverBladeLeft" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f8f9fa"/>
+      <stop offset="40%" stop-color="#ced4da"/>
+      <stop offset="85%" stop-color="#868e96"/>
+      <stop offset="100%" stop-color="#495057"/>
+    </linearGradient>
+
+    <linearGradient id="silverBladeRight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#343a40"/>
+      <stop offset="25%" stop-color="#adb5bd"/>
+      <stop offset="70%" stop-color="#dee2e6"/>
+      <stop offset="100%" stop-color="#f1f3f5"/>
+    </linearGradient>
+
+    <!-- Ouro Envelhecido da Guarda -->
+    <linearGradient id="goldHilt" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffd43b"/>
+      <stop offset="35%" stop-color="#d4af37"/>
+      <stop offset="70%" stop-color="#997300"/>
+      <stop offset="100%" stop-color="#594400"/>
+    </linearGradient>
+
+    <!-- Couro Negro do Punho -->
+    <linearGradient id="leatherGrip" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#212529"/>
+      <stop offset="50%" stop-color="#121416"/>
+      <stop offset="100%" stop-color="#0a0c0e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fundo do Card de Arma -->
+  <rect width="300" height="300" rx="16" fill="url(#slotBg)" stroke="#2b3345" stroke-width="2"/>
+  <rect x="6" y="6" width="288" height="288" rx="12" fill="none" stroke="#ff385c" stroke-width="1" opacity="0.3"/>
+
+  <!-- Brilho de Fundo da Lâmina -->
+  <circle cx="150" cy="130" r="110" fill="url(#crimsonAura)"/>
+
+  <!-- Grupo Girado para Ângulo Diagonal Tático de Exibição -->
+  <g transform="rotate(45, 150, 150)">
+    <!-- Ponta e Gume da Espada (Face Esquerda Iluminada) -->
+    <path d="M 150 20 L 140 190 L 150 190 Z" fill="url(#silverBladeLeft)"/>
+    <!-- Ponta e Gume da Espada (Face Direita com Sombra Especular) -->
+    <path d="M 150 20 L 160 190 L 150 190 Z" fill="url(#silverBladeRight)"/>
+
+    <!-- Linha Central da Lâmina (Fuller / Canal de Sangue) -->
+    <line x1="150" y1="35" x2="150" y2="185" stroke="#1a0005" stroke-width="2.5"/>
+    <line x1="150" y1="45" x2="150" y2="175" stroke="#ff2a4b" stroke-width="1.2" opacity="0.9"/>
+
+    <!-- Runas Carmesins Místicas que Brilham na Lâmina -->
+    <circle cx="150" cy="65" r="2.5" fill="#ff6b81"/>
+    <line x1="147" y1="80" x2="153" y2="80" stroke="#ff6b81" stroke-width="1.5"/>
+    <line x1="148" y1="95" x2="152" y2="90" stroke="#ff6b81" stroke-width="1.5"/>
+    <circle cx="150" cy="115" r="2" fill="#ff6b81"/>
+    <path d="M 148 135 L 150 130 L 152 135" stroke="#ff6b81" stroke-width="1.5" fill="none"/>
+    <line x1="148" y1="150" x2="152" y2="150" stroke="#ff6b81" stroke-width="1.5"/>
+
+    <!-- Guarda da Espada (Estilo Asas de Morcego / Gótica) -->
+    <path d="M 150 190 Q 120 185 95 175 Q 110 200 135 200 L 150 202 L 165 200 Q 190 200 205 175 Q 180 185 150 190 Z" fill="url(#goldHilt)" stroke="#3d2c00" stroke-width="1.5"/>
+    <circle cx="150" cy="196" r="4.5" fill="#e03131" stroke="#ffd43b" stroke-width="1"/>
+
+    <!-- Cabo / Empunhadura de Couro Trançado com Fio Dourado -->
+    <rect x="145" y="202" width="10" height="48" rx="2" fill="url(#leatherGrip)" stroke="#1a1d20" stroke-width="1"/>
+    <line x1="145" y1="210" x2="155" y2="212" stroke="#d4af37" stroke-width="1"/>
+    <line x1="145" y1="218" x2="155" y2="220" stroke="#d4af37" stroke-width="1"/>
+    <line x1="145" y1="226" x2="155" y2="228" stroke="#d4af37" stroke-width="1"/>
+    <line x1="145" y1="234" x2="155" y2="236" stroke="#d4af37" stroke-width="1"/>
+    <line x1="145" y1="242" x2="155" y2="244" stroke="#d4af37" stroke-width="1"/>
+
+    <!-- Pomo Oval com Rubi Lapidado -->
+    <circle cx="150" cy="256" r="10" fill="url(#goldHilt)" stroke="#3d2c00" stroke-width="1.5"/>
+    <polygon points="150,250 156,256 150,262 144,256" fill="#c92a2a" stroke="#ffe3e3" stroke-width="0.8"/>
+  </g>
+
+  <!-- Tag de Raridade e Efeito no Canto -->
+  <rect x="12" y="12" width="85" height="22" rx="4" fill="rgba(201, 42, 42, 0.25)" stroke="#ff6b81" stroke-width="1"/>
+  <text x="54" y="27" fill="#ff8787" font-size="11" font-weight="bold" font-family="sans-serif" text-anchor="middle">LENDÁRIO</text>
+  <text x="288" y="285" fill="#ced4da" font-size="10" font-family="monospace" text-anchor="end">+32 DANO FÍSICO</text>
+</svg>

@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="throneBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0a0508"/>
+      <stop offset="50%" stop-color="#140910"/>
+      <stop offset="100%" stop-color="#050305"/>
+    </linearGradient>
+    <radialGradient id="torchGlowRed" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff3b3b" stop-opacity="0.85"/>
+      <stop offset="35%" stop-color="#c91818" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#800000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="goldFiligree" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffe082"/>
+      <stop offset="50%" stop-color="#cda34f"/>
+      <stop offset="100%" stop-color="#8c6a23"/>
+    </linearGradient>
+    <linearGradient id="pillarStone" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#12131a"/>
+      <stop offset="50%" stop-color="#242633"/>
+      <stop offset="100%" stop-color="#101117"/>
+    </linearGradient>
+    <linearGradient id="carpetGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4a000d"/>
+      <stop offset="60%" stop-color="#7a0d1d"/>
+      <stop offset="100%" stop-color="#a61427"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Abóbada Gótica de Fundo -->
+  <rect width="600" height="400" fill="url(#throneBg)"/>
+
+  <!-- Iluminação de Tochas Laterais -->
+  <circle cx="80" cy="140" r="110" fill="url(#torchGlowRed)"/>
+  <circle cx="520" cy="140" r="110" fill="url(#torchGlowRed)"/>
+
+  <!-- Vitral Ogival de Sangue no Fundo Central -->
+  <path d="M 240 220 L 240 100 Q 300 15 360 100 L 360 220 Z" fill="#2d0812" stroke="url(#goldFiligree)" stroke-width="4"/>
+  <path d="M 260 210 L 260 110 Q 300 45 340 110 L 340 210 Z" fill="#800c1e" opacity="0.6"/>
+  <line x1="300" y1="40" x2="300" y2="220" stroke="url(#goldFiligree)" stroke-width="2"/>
+  <line x1="240" y1="120" x2="360" y2="120" stroke="url(#goldFiligree)" stroke-width="2"/>
+  <line x1="240" y1="170" x2="360" y2="170" stroke="url(#goldFiligree)" stroke-width="2"/>
+  <circle cx="300" cy="120" r="24" fill="#a8152c" stroke="url(#goldFiligree)" stroke-width="2"/>
+
+  <!-- Pilares Góticos Laterais -->
+  <rect x="50" y="40" width="45" height="320" fill="url(#pillarStone)" stroke="#3a3d4f" stroke-width="1.5"/>
+  <rect x="505" y="40" width="45" height="320" fill="url(#pillarStone)" stroke="#3a3d4f" stroke-width="1.5"/>
+  <!-- Capitéis dos Pilares -->
+  <path d="M 40 40 L 105 40 L 95 65 L 50 65 Z" fill="#2c2f3d" stroke="url(#goldFiligree)" stroke-width="1.5"/>
+  <path d="M 495 40 L 560 40 L 550 65 L 505 65 Z" fill="#2c2f3d" stroke="url(#goldFiligree)" stroke-width="1.5"/>
+
+  <!-- Arcos Góticos Ogivais Superiores -->
+  <path d="M 95 65 Q 300 -10 505 65" stroke="#3d4052" stroke-width="12" fill="none"/>
+  <path d="M 95 65 Q 300 -5 505 65" stroke="url(#goldFiligree)" stroke-width="2" fill="none"/>
+
+  <!-- Degraus do Trono -->
+  <polygon points="140,360 460,360 480,380 120,380" fill="#1b1c24" stroke="#363947" stroke-width="2"/>
+  <polygon points="170,335 430,335 450,360 150,360" fill="#14151c" stroke="#363947" stroke-width="2"/>
+  <polygon points="200,310 400,310 420,335 180,335" fill="#0d0e13" stroke="#363947" stroke-width="2"/>
+
+  <!-- Tapete Carmesim Imperial com Bordas Douradas -->
+  <polygon points="260,310 340,310 380,400 220,400" fill="url(#carpetGrad)" stroke="url(#goldFiligree)" stroke-width="2"/>
+
+  <!-- O Trono de Sangue em Obsidiana -->
+  <!-- Espaldar Alto Gótico com Pontas e Ornamento -->
+  <polygon points="245,310 355,310 350,140 300,75 250,140" fill="#09090d" stroke="url(#goldFiligree)" stroke-width="3"/>
+  <!-- Almofada do Espaldar em Veludo Vermelho Escuro -->
+  <polygon points="260,300 340,300 336,155 300,105 264,155" fill="#4d0912" stroke="#8c1223" stroke-width="1.5"/>
+  <!-- Braços do Trono e Gárgulas nos Suportes -->
+  <rect x="230" y="240" width="25" height="70" fill="#12131a" stroke="url(#goldFiligree)" stroke-width="1.5"/>
+  <rect x="345" y="240" width="25" height="70" fill="#12131a" stroke="url(#goldFiligree)" stroke-width="1.5"/>
+  <!-- Assento do Trono -->
+  <rect x="250" y="265" width="100" height="45" fill="#5c0b16" stroke="url(#goldFiligree)" stroke-width="2"/>
+
+  <!-- Coroa e Brasão Imortal sobre o Trono -->
+  <path d="M 285 95 L 300 70 L 315 95 L 300 85 Z" fill="url(#goldFiligree)"/>
+
+  <!-- Sarcófago de Repouso Vampírico ao Fundo Lateral Esquerdo -->
+  <polygon points="120,310 170,290 185,340 135,360" fill="#181a24" stroke="url(#goldFiligree)" stroke-width="2"/>
+  <polygon points="125,308 165,292 178,335 138,352" fill="#29050b" stroke="#75111e" stroke-width="1"/>
+  <text x="145" y="332" font-family="'Cinzel', serif" font-size="12" fill="#cda34f" text-anchor="middle" transform="rotate(-20 145 332)">✝</text>
+
+  <!-- Tochas de Parede com Suportes de Ferro Forjado -->
+  <!-- Esquerda -->
+  <rect x="75" y="145" width="8" height="45" fill="#2d2217" stroke="#120c08"/>
+  <polygon points="70,145 88,145 83,135 75,135" fill="url(#goldFiligree)"/>
+  <path d="M 75 135 Q 79 110 85 125 Q 77 120 75 135 Z" fill="#ff7043"/>
+  <path d="M 77 132 Q 79 118 82 127 Z" fill="#ffe082"/>
+  <!-- Direita -->
+  <rect x="517" y="145" width="8" height="45" fill="#2d2217" stroke="#120c08"/>
+  <polygon points="512,145 530,145 525,135 517,135" fill="url(#goldFiligree)"/>
+  <path d="M 517 135 Q 521 110 527 125 Q 519 120 517 135 Z" fill="#ff7043"/>
+  <path d="M 519 132 Q 521 118 524 127 Z" fill="#ffe082"/>
+
+  <!-- Névoa Rastejante Inferior -->
+  <path d="M 0 380 Q 150 365 300 378 T 600 370 L 600 400 L 0 400 Z" fill="#1a0a14" opacity="0.6"/>
+</svg>
