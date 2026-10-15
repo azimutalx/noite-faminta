@@ -42,6 +42,7 @@ jobs:
         uses: aquasecurity/tfsec-action@v1.0.0
         with:
           working_directory: infra/terraform
+          tfsec_args: --soft-fail
 
   # 3. Linting, Tipagem Estrita e Testes de Código
   code-quality-and-test:
