@@ -40,9 +40,9 @@ jobs:
 
       - name: Run tfsec
         uses: aquasecurity/tfsec-action@v1.0.0
+        continue-on-error: true
         with:
           working_directory: infra/terraform
-          tfsec_args: --soft-fail
 
   # 3. Linting, Tipagem Estrita e Testes de Código
   code-quality-and-test:
