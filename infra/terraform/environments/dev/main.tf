@@ -16,12 +16,13 @@ resource "aws_secretsmanager_secret" "db_secret" {
   recovery_window_in_days = 0 # Para dev; em prod utilizar 30 dias
 
   tags = {
-    Name = "noite-faminta-${var.environment}-db-credentials"
+    Name        = "noite-faminta-${var.environment}-db-credentials"
+    Environment = var.environment
   }
 }
 
 resource "aws_secretsmanager_secret_version" "db_secret_val" {
-  secret_id     = aws_secretsmanager_secret.db_secret.id
+  secret_id = aws_secretsmanager_secret.db_secret.id
   secret_string = jsonencode({
     username = var.db_username
     password = random_password.db_password.result

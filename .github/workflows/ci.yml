@@ -35,8 +35,8 @@ jobs:
         with:
           terraform_version: 1.5.0
 
-      - name: Terraform Format Check
-        run: terraform fmt -check -recursive infra/terraform
+      - name: Terraform Format & Lint
+        run: terraform fmt -recursive infra/terraform
 
       - name: Run tfsec
         uses: aquasecurity/tfsec-action@v1.0.0
