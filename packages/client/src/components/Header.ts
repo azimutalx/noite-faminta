@@ -15,7 +15,22 @@ export function renderHeader(state: GameState): string {
   const xpPercent = Math.min(100, Math.round((character.experience / character.experienceToNextLevel) * 100));
   const alertPercent = Math.min(100, character.masqueradeAlert);
 
+  const crestTitles: Record<ActiveTab, string> = {
+    overview: 'Visão Geral do Personagem',
+    refugio: 'Refúgio Ancestral & Soberania',
+    metropole: 'Metrópole Noturna & Caçada',
+    masmorras: 'Masmorras, Chefes & Forja',
+    arvore: 'Árvore Híbrida & Mutações',
+    taverna: 'Taverna dos Renegados & Clã'
+  };
+  const currentCrestTitle = crestTitles[activeTab] || 'Noite Faminta';
+
   return `
+    <div class="bf-crest-banner" style="margin-bottom: 8px;">
+      <span class="bf-crest-filigree left">⚔️</span>
+      <h2 class="bf-crest-title">${currentCrestTitle}</h2>
+      <span class="bf-crest-filigree right">⚔️</span>
+    </div>
     <header class="glass-panel accent-border" style="box-shadow: 0 8px 30px rgba(0,0,0,0.9), 0 0 20px rgba(139,10,10,0.15);">
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-3); margin-bottom: var(--space-4);">
         <div style="display: flex; align-items: center; gap: var(--space-3);">
@@ -96,6 +111,9 @@ export function renderHeader(state: GameState): string {
 
       <!-- Navegação dos Painéis -->
       <nav class="nav-tabs" id="main-nav">
+        <button class="nav-tab ${activeTab === 'overview' ? 'active' : ''}" data-tab="overview">
+          👤 0. Visão Geral
+        </button>
         <button class="nav-tab ${activeTab === 'refugio' ? 'active' : ''}" data-tab="refugio">
           🏰 1. Refúgio Ancestral
         </button>

@@ -38,7 +38,7 @@ describe('packages/client: StateStore & Hierarquia de Estado e UI', () => {
     expect(state.character).toBeDefined();
     expect(state.character.name).toBe('Vladislav de Karnstein');
     expect(state.character.faction).toBe('VAMPIRE');
-    expect(state.activeTab).toBe('refugio');
+    expect(state.activeTab).toBe('overview');
     expect(state.ui).toBeDefined();
     expect(state.ui.refugioSubTab).toBe('chambers');
     expect(state.ui.inspectedChamberId).toBeNull();

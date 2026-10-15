@@ -29,7 +29,7 @@ export function renderRefugioPanorama(character: CharacterProfile): string {
       <!-- Panorama da Fortaleza -->
       <div class="hideout-panorama-card">
         <div class="hideout-banner-frame">
-          <img src="${stage.imageAsset}" alt="${stage.title}" class="hideout-banner-img" />
+          <img src="/assets/bitefight_hideout_banner.jpg" alt="${stage.title}" class="hideout-banner-img" />
           <div class="hideout-banner-overlay">
             <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: var(--space-2);">
               <div>
@@ -96,6 +96,41 @@ export function renderRefugioPanorama(character: CharacterProfile): string {
             🪙 Depositar no Cofre
           </button>
         </div>
+      </div>
+
+      <!-- Tabela Clássica de Melhorias do Refúgio (Estilo BiteFight) -->
+      <div style="margin-top: 4px;">
+        <div style="font-family: var(--font-family-display); font-size: 13px; font-weight: 700; color: #f2f3f7; margin-bottom: 8px;">
+          ⚔️ Melhorias do Refúgio (Defesa & Tesouros)
+        </div>
+        <table class="bf-stat-table">
+          <tbody>
+            <tr>
+              <td style="width: 50px; text-align: center;"><span style="font-size: 24px;">📦</span></td>
+              <td class="label"><strong>Baú de Tesouro</strong><br><span style="font-size: 10px; color: #8d8f9f;">Capacidade: 72.000 🪙</span></td>
+              <td class="value" style="color: #69db7c;">Ativo (Nvl ${character.hideoutLevel})</td>
+              <td style="text-align: right; font-family: var(--font-family-mono); font-size: 10px; color: #ff8787;">Soberania Nível ${character.hideoutLevel}</td>
+            </tr>
+            <tr>
+              <td style="width: 50px; text-align: center;"><span style="font-size: 24px;">👑</span></td>
+              <td class="label"><strong>Baú Real Ancestral</strong><br><span style="font-size: 10px; color: #8d8f9f;">Capacidade: 288.000 🪙</span></td>
+              <td class="value" style="color: #ff8787;">${character.hideoutLevel >= 5 ? 'Ativo' : 'Não Ativo'}</td>
+              <td style="text-align: right; font-size: 10px; color: #8d8f9f;">(Disponível nível 5+)</td>
+            </tr>
+            <tr>
+              <td style="width: 50px; text-align: center;"><span style="font-size: 24px;">🗿</span></td>
+              <td class="label"><strong>Gárgula Guardiã</strong><br><span style="font-size: 10px; color: #8d8f9f;">+15 Defesa contra invasores</span></td>
+              <td class="value" style="color: #69db7c;">Ativo (Nvl ${character.hideoutRooms?.gargoyle_parapet ?? 1})</td>
+              <td style="text-align: right; font-family: var(--font-family-mono); font-size: 10px; color: var(--color-gold-coin);">Ala Erguida</td>
+            </tr>
+            <tr>
+              <td style="width: 50px; text-align: center;"><span style="font-size: 24px;">📖</span></td>
+              <td class="label"><strong>Livro dos Condenados</strong><br><span style="font-size: 10px; color: #8d8f9f;">+20 Ocultismo & Sangue</span></td>
+              <td class="value" style="color: #69db7c;">Ativo</td>
+              <td style="text-align: right; font-family: var(--font-family-mono); font-size: 10px; color: #da77f2;">Grimório Aberto</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   `;

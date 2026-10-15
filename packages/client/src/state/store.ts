@@ -6,7 +6,7 @@ import {
   normalizeCharacterStats
 } from '@noite-faminta/shared';
 
-export type ActiveTab = 'refugio' | 'arvore' | 'metropole' | 'masmorras' | 'taverna';
+export type ActiveTab = 'overview' | 'refugio' | 'arvore' | 'metropole' | 'masmorras' | 'taverna';
 export type RefugioSubTab = 'chambers' | 'panorama' | 'arsenal' | 'gambits';
 
 export interface UIState {
@@ -100,7 +100,7 @@ class StateStore {
 
     const urlParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
     const queryTab = urlParams?.get('tab') as ActiveTab | null;
-    const initialTab = queryTab && ['refugio', 'arvore', 'metropole', 'masmorras', 'taverna'].includes(queryTab) ? queryTab : 'refugio';
+    const initialTab = queryTab && ['overview', 'refugio', 'arvore', 'metropole', 'masmorras', 'taverna'].includes(queryTab) ? queryTab : 'overview';
 
     this.state = {
       character,
@@ -153,19 +153,13 @@ class StateStore {
   }
 
   public setInspectedChamber(chamberId: HideoutChamberId | null): void {
-    this.state.ui = {
-      ...this.state.ui,
-      inspectedChamberId: chamberId
-    };
+    this.state.ui = { ...this.state.ui, inspectedChamberId: chamberId };
     this.notify();
   }
 
   public toggleTorchLighting(): void {
     const nextActive = !this.state.ui.torchLightingActive;
-    this.state.ui = {
-      ...this.state.ui,
-      torchLightingActive: nextActive
-    };
+    this.state.ui = { ...this.state.ui, torchLightingActive: nextActive };
     this.addLog(
       nextActive ? '🕯️ As tochas carmesins do santuário foram acesas!' : '🌙 As tochas foram apagadas. A luz lunar penetra as criptas.',
       'info'

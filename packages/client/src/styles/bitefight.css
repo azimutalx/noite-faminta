@@ -1,0 +1,382 @@
+/* ==========================================================================
+   BITEFIGHT GOTHIC RPG DESIGN SYSTEM
+   Autêntica Atmosfera Dark Fantasy dos Clássicos MMORPGs de Navegador
+   ========================================================================== */
+
+/* Palco Central Gótico BiteFight */
+.bf-stage-layout {
+  max-width: 1040px;
+  width: 100%;
+  margin: 15px auto 40px auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.95));
+}
+
+/* Crista Superior Demoníaca / Gárgula */
+.bf-crest-banner {
+  height: 52px;
+  background: linear-gradient(180deg, #380707 0%, #1a0404 100%);
+  border: 2px solid #5a1414;
+  border-bottom: 1px solid #200404;
+  border-radius: 4px 4px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: inset 0 1px 0 rgba(255, 120, 120, 0.3), 0 4px 12px rgba(0, 0, 0, 0.8);
+}
+.bf-crest-title {
+  font-family: var(--font-family-display);
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  color: #f5d491;
+  text-transform: uppercase;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.95), 0 0 12px rgba(220, 30, 30, 0.6);
+}
+.bf-crest-filigree {
+  position: absolute;
+  font-size: 20px;
+  color: #8b1010;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+}
+.bf-crest-filigree.left { left: 16px; }
+.bf-crest-filigree.right { right: 16px; }
+
+/* Barra de Recursos de Alta Densidade (HUD de Topo) */
+.bf-resource-bar {
+  background: linear-gradient(180deg, #1b1722 0%, #0d0a11 100%);
+  border: 1px solid #3c3242;
+  border-top: none;
+  padding: 6px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+.bf-res-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-family: var(--font-family-mono);
+  font-size: 12px;
+  color: #d4d6e2;
+}
+.bf-res-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.bf-res-val {
+  font-weight: 700;
+  color: #fff;
+}
+.bf-res-val.gold { color: var(--color-gold-coin); }
+.bf-res-val.blood { color: #ff6b6b; }
+.bf-res-val.stamina { color: #74c0fc; }
+.bf-res-val.health { color: #ff8787; }
+
+/* Corpo Principal Dividido em Duas Colunas: Menu Lateral + Palco */
+.bf-body-grid {
+  display: flex;
+  background: #08060a;
+  border: 2px solid #382c3c;
+  border-top: none;
+  border-bottom: 3px solid #1a121d;
+  min-height: 720px;
+}
+
+/* Barra Lateral Gótica de Navegação */
+.bf-sidebar {
+  width: 195px;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, #18141f 0%, #0c0910 50%, #050407 100%);
+  border-right: 2px solid #2e2332;
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  position: relative;
+  box-shadow: inset -4px 0 10px rgba(0, 0, 0, 0.7);
+}
+.bf-lantern-header {
+  text-align: center;
+  padding: 8px 4px 12px 4px;
+  border-bottom: 1px solid rgba(212, 214, 226, 0.12);
+  margin-bottom: 6px;
+}
+.bf-lantern-logo {
+  font-family: var(--font-family-display);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  color: #ff5252;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(220, 20, 20, 0.8), 0 2px 4px #000;
+  display: block;
+}
+.bf-lantern-sub {
+  font-size: 9px;
+  color: #8d8f9f;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Botões Chanfrados de Granito e Ferro do Menu */
+.bf-nav-btn {
+  font-family: var(--font-family-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: left;
+  padding: 7px 10px;
+  background: linear-gradient(180deg, #27202c 0%, #16121a 50%, #0e0a12 100%);
+  color: #c7c9d6;
+  border: 1px solid #3e3244;
+  border-top: 1px solid #5a4964;
+  border-bottom: 2px solid #060408;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 2px 4px rgba(0, 0, 0, 0.7);
+  user-select: none;
+}
+.bf-nav-btn:hover {
+  background: linear-gradient(180deg, #440d0d 0%, #280606 50%, #180303 100%);
+  border-color: #8b1010;
+  border-top-color: #c21919;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(200, 20, 20, 0.5), inset 0 1px 0 rgba(255, 120, 120, 0.3);
+}
+.bf-nav-btn.active {
+  background: linear-gradient(180deg, #660a0a 0%, #3a0404 50%, #200202 100%);
+  border-color: #ab1212;
+  border-top-color: #ff5252;
+  color: #fff;
+  box-shadow: 0 0 14px rgba(220, 20, 20, 0.7), inset 0 1px 0 rgba(255, 140, 140, 0.4);
+  font-weight: 900;
+}
+.bf-nav-btn.voodoo {
+  border-color: #8b105a;
+  color: #da77f2;
+}
+
+/* Área de Conteúdo / Palco Principal */
+.bf-content-stage {
+  flex: 1;
+  background: linear-gradient(180deg, #150608 0%, #0b0304 40%, #050102 100%);
+  padding: 16px;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.95);
+}
+
+/* Banner de Evento da Lua Cheia (Moon Blessing) */
+.bf-event-banner {
+  background: linear-gradient(180deg, #240505 0%, #120202 100%);
+  border: 1px solid #4a0c0c;
+  border-top: 2px solid #8b1010;
+  padding: 14px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.bf-event-title {
+  font-family: var(--font-family-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: #ff8787;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.bf-event-list {
+  font-size: 11px;
+  color: #c7c9d6;
+  line-height: 1.5;
+  list-style-type: none;
+  padding-left: 2px;
+}
+.bf-event-list li::before {
+  content: '• ';
+  color: #ff5252;
+  font-weight: bold;
+}
+.bf-event-timer {
+  font-family: var(--font-family-mono);
+  font-size: 11px;
+  color: #ff6b6b;
+  font-weight: 700;
+  text-align: right;
+  margin-top: 8px;
+}
+
+/* Sub-Abas de Personagem BiteFight */
+.bf-subtabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #3a1014;
+  padding-bottom: 6px;
+}
+.bf-subtab-btn {
+  font-family: var(--font-family-display);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  background: #1c080a;
+  color: #8d8f9f;
+  border: 1px solid #381216;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.bf-subtab-btn:hover {
+  background: #2b0c10;
+  color: #fff;
+  border-color: #63181e;
+}
+.bf-subtab-btn.active {
+  background: linear-gradient(180deg, #5c0c12 0%, #2e0508 100%);
+  color: #fff;
+  border-color: #941720;
+  box-shadow: 0 0 8px rgba(180, 20, 20, 0.4);
+}
+
+/* Grid de Perfil: Retrato + Tabela de Dados Listrada */
+.bf-profile-grid {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.bf-portrait-column {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.bf-portrait-box {
+  width: 160px;
+  height: 190px;
+  background: #000;
+  border: 2px solid #4a3c50;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.9), inset 0 0 10px rgba(0, 0, 0, 0.9);
+}
+.bf-portrait-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Tabela de Estatísticas Listrada (Alternando Carmesim Profundo) */
+.bf-stat-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  border: 1px solid #4a1014;
+}
+.bf-stat-table tr:nth-child(odd) {
+  background-color: #35080a;
+}
+.bf-stat-table tr:nth-child(even) {
+  background-color: #210406;
+}
+.bf-stat-table td {
+  padding: 6px 10px;
+  border: 1px solid #450c10;
+  color: #c7c9d6;
+}
+.bf-stat-table td.label {
+  width: 38%;
+  font-weight: 600;
+  color: #a8aab8;
+}
+.bf-stat-table td.value {
+  font-family: var(--font-family-mono);
+  font-weight: 700;
+  color: #fff;
+}
+
+/* Acordeões de Inventário / Itens */
+.bf-accordion {
+  border: 1px solid #3c1014;
+  margin-bottom: 6px;
+  background: #160406;
+}
+.bf-accordion-header {
+  background: linear-gradient(180deg, #2b080a 0%, #170406 100%);
+  padding: 8px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-family-display);
+  font-size: 12px;
+  font-weight: 700;
+  color: #f2f3f7;
+  letter-spacing: 0.06em;
+  user-select: none;
+  border-bottom: 1px solid #3c1014;
+}
+.bf-accordion-header:hover {
+  background: linear-gradient(180deg, #3d0c10 0%, #240508 100%);
+  color: #fff;
+}
+.bf-accordion-body {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #0f0204;
+}
+.bf-item-slot-vignette {
+  width: 140px;
+  height: 80px;
+  background: radial-gradient(circle, #5e0c10 0%, #1a0304 80%);
+  border: 1px solid #6e1318;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8), 0 2px 6px rgba(0, 0, 0, 0.6);
+  flex-shrink: 0;
+}
+.bf-item-slot-vignette img {
+  max-width: 85%;
+  max-height: 85%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.9));
+}
+.bf-item-specs {
+  font-size: 11px;
+  line-height: 1.6;
+  color: #c7c9d6;
+}
+.bf-item-title {
+  font-family: var(--font-family-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+}

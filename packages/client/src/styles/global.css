@@ -4,6 +4,7 @@
    ========================================================================== */
 
 @import './tokens.css';
+@import './bitefight.css';
 @import './components.css';
 @import './panels.css';
 @import './dungeons.css';
@@ -16,10 +17,15 @@
 }
 
 /* ==========================================================================
-   AMBIENTAÇÃO & ATMOSFERA GÓTICO-PUNK (DARK FANTASY HUD)
+   AMBIENTAÇÃO & ATMOSFERA GÓTICA CLÁSSICA (BITEFIGHT HUD)
    ========================================================================== */
 body {
-  background-color: var(--color-bg-base);
+  background-color: #030306;
+  background-image: url('/assets/gothic_bg_forest.jpg');
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
   color: var(--color-text-main);
   font-family: var(--font-family-body);
   font-size: 14px;
@@ -27,12 +33,6 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   position: relative;
-  background-image: 
-    radial-gradient(ellipse at 50% 0%, rgba(139, 10, 10, 0.22) 0%, transparent 65%),
-    radial-gradient(circle at 90% 20%, rgba(205, 163, 79, 0.05) 0%, transparent 45%),
-    radial-gradient(circle at 10% 80%, rgba(184, 115, 9, 0.06) 0%, transparent 45%),
-    linear-gradient(180deg, #09090d 0%, #030305 100%);
-  background-attachment: fixed;
 }
 
 /* Vinheta Atmosférica de Tela Inteira */
