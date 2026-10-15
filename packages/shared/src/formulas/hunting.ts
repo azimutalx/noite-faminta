@@ -1,5 +1,6 @@
 import { CharacterStats, TagmarPhysicalCondition, TagmarResolutionGrade } from '../types/character.js';
 
+// Pure formula engine: calculations are deterministic; currency and loot state are persisted within server database transaction.
 export type HuntTargetType =
   | 'STREET_MORTAL'
   | 'NOCTURNAL_PATROL'

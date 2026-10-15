@@ -12,6 +12,8 @@ import {
 } from '@noite-faminta/shared';
 import { store } from './store.js';
 
+// Client API state: optimistic updates synchronize with the backend server database transaction.
+
 export * from './combatApi.js';
 
 const API_BASE = '/api';
