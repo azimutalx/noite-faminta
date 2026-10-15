@@ -313,100 +313,27 @@ Em cada Pull Request / Push, o pipeline executa portais de segurança automatiza
 
 
 
----
-### 📌 Decisão Arquitetural: ADR-004: Masmorras, Carving e Forja Ancestral
-ADR-004: Sistema Autoritativo de Masmorras, Carving e Forja Ancestral com Afixos Procedurais.
-- packages/shared: Tipos DungeonBoss, MonsterMaterial, ForgeRecipe, DungeonRaidResult, ForgeResult e validação Zod.
-- packages/server: Catálogo de chefes (Malachi, Fenrir, Carmilla) com Gambits e Carving; motor de forja ancestral com CSPRNG seguro gerando prefixos e sufixos; rotas /api/dungeons/raid e /api/crafting/forge operando sob transações ACID (FOR UPDATE) com ledger de auditoria imutável.
-- packages/client: Painel Masmorras & Forja gótico-punk, sem clichés de IA, integrado ao store reativo vanilla.
-
 
 ---
-### 📌 Decisão Arquitetural: ADR-005: Blindagem contra Race Conditions e Testes de Concorrência ACID
-ADR-005: Blindagem contra Race Conditions e Testes de Concorrência Transacional ACID.
-- Simulação determinística de rajadas concorrentes de até 10 requisições simultâneas em mesmo milissegundo no motor transacional.
-- Validação comprovada de bloqueio de Double Spending em ouro e bloqueio de Duplo Consumo de materiais únicos (UUID).
-- Encadeamento causal imutável verificado no Financial Audit Ledger (balance_before[i] === balance_after[i-1]).
-- Emprego estrito de CSPRNG seguro (crypto.randomInt) eliminando qualquer Math.random em ambiente de testes ou produção.
 
+## 8. Registro de Decisões Arquiteturais (ADRs)
 
----
-### 📌 Decisão Arquitetural: ADR-006: Mercado Global & Livro de Ordens com Tokens da Noite
-ADR-006: Mercado Global de Itens & Livro de Ordens com Tibia Coins (Tokens da Noite).
-- packages/shared: Tipos MarketOrder, MarketBuyResult, OrderType e schemas Zod BuyMarketOrderSchema e CancelMarketOrderSchema.
-- packages/server: Módulo orderBook.ts com cálculo de taxas (5% queima de Gold Sink); rotas /api/market/orders com criação de ordens, compra atômica sob lock pessimista (SELECT ... FOR UPDATE no comprador, vendedor e ordem) e cancelamento seguro com restauração de custódia; persistência imutável em financial_audit_ledger.
-- packages/server/tests/market.test.ts: Testes unitários de settlement e simulação de concorrência com 2 compradores simultâneos disputando a mesma ordem (sem duplicação de itens).
-- packages/client: Seção de Mercado Global integrada ao MetropolePanel e cliente API reativo.
+Todas as decisões técnicas de fundação e evolução foram consolidadas de forma rastreável:
 
+| ADR | Título da Decisão | Status | Documentação Completa |
+|---|---|---|---|
+| **ADR-001** | Arquitetura Monorepo Autoritativa & DevSecOps | Aprovado | [Ver Detalhes](file:///c:/Users/hados/.gemini/antigravity-ide/scratch/noite-faminta/docs/ADRS.md#adr-001) |
+| **ADR-002** | Transações Atômicas PostgreSQL & Ledger de Auditoria | Aprovado | [Ver Detalhes](file:///c:/Users/hados/.gemini/antigravity-ide/scratch/noite-faminta/docs/ADRS.md#adr-002) |
+| **ADR-003** | Motor de Combate Tático com Matriz de Gambits | Aprovado | [Ver Detalhes](file:///c:/Users/hados/.gemini/antigravity-ide/scratch/noite-faminta/docs/ADRS.md#adr-003) |
+| **ADR-004** | Masmorras, Carving e Forja Ancestral com Afixos | Aprovado | [Ver Detalhes](file:///c:/Users/hados/.gemini/antigravity-ide/scratch/noite-faminta/docs/ADRS.md#adr-004) |
+| **ADR-005** | Blindagem contra Race Conditions & ACID Concurrency | Aprovado | [Ver Detalhes](file:///c:/Users/hados/.gemini/antigravity-ide/scratch/noite-faminta/docs/ADRS.md#adr-005) |
+| **ADR-006** | Mercado Global & Livro de Ordens P2P (Tibia Coins) | Aprovado | [Ver Detalhes](file:///c:/Users/hados/.gemini/antigravity-ide/scratch/noite-faminta/docs/ADRS.md#adr-006) |
+| **ADR-007** | Inquisição Dinâmica e Sistema Nêmesis Procedural | Aprovado | [Ver Detalhes](file:///c:/Users/hados/.gemini/antigravity-ide/scratch/noite-faminta/docs/ADRS.md#adr-007) |
+| **ADR-008** | Visão de Personagem, Paperdoll RPG e Imersão Visual | Aprovado | [Ver Detalhes](file:///c:/Users/hados/.gemini/antigravity-ide/scratch/noite-faminta/docs/ADRS.md#adr-008) |
+| **ADR-009** | Guerra de Bairros & Dividendos Semanais da Metrópole | Aprovado | [Ver Detalhes](file:///c:/Users/hados/.gemini/antigravity-ide/scratch/noite-faminta/docs/ADRS.md#adr-009) |
+| **ADR-010** | Taverna dos Renegados (Mercenários Offline 90/10) | Aprovado | [Ver Detalhes](file:///c:/Users/hados/.gemini/antigravity-ide/scratch/noite-faminta/docs/ADRS.md#adr-010) |
+| **ADR-011** | Identidade Visual Dark Fantasy (Game HUD & Paperdoll) | Aprovado | [Ver Detalhes](file:///c:/Users/hados/.gemini/antigravity-ide/scratch/noite-faminta/docs/ADRS.md#adr-011) |
+| **ADR-012** | Progressão Visual e Mecânica do Refúgio (5 Estágios) | Aprovado | [Ver Detalhes](file:///c:/Users/hados/.gemini/antigravity-ide/scratch/noite-faminta/docs/ADRS.md#adr-012) |
+| **ADR-013** | Câmaras do Santuário, Oráculo de Obras & Infraestrutura Prod | Aprovado | [Ver Detalhes](file:///c:/Users/hados/.gemini/antigravity-ide/scratch/noite-faminta/docs/ADRS.md#adr-013) |
 
----
-### 📌 Decisão Arquitetural: ADR-007: Sistema Nêmesis da Inquisição
-ADR-007: Sistema Nêmesis da Inquisição (Alerta da Máscara & Caçadores Procedurais Dinâmicos).
-- packages/shared: Tipos InquisitionNemesis, NemesisTrait, NemesisPurgeResult.
-- packages/server: Módulo nemesisGenerator.ts gerando caçadores procedurais com títulos, traits e gambits táticos usando CSPRNG; rotas /api/nemesis/current e /api/nemesis/purge com lock transacional no personagem, zeramento de alerta de máscara, drop de relíquias em items e registro em financial_audit_ledger.
-- packages/client: Integração com botão de purga e alerta visual na Metrópole.
-- 28 testes automatizados aprovados no monorepo com 100% de sucesso.
-
-
----
-### 📌 Decisão Arquitetural: ADR-008: Visão do Personagem, Paperdoll RPG e Imersão Visual Dinâmica
-ADR-008: Visão de Personagem, Paperdoll RPG e Imersão Visual Dinâmica.
-- packages/client/public/assets: Inclusão de imagens temáticas em alta definição de retrato do personagem (vampire_avatar.jpg) e panorama noturno da metrópole (metropolis_night.jpg).
-- RefugioPanel.ts: Adição do componente de herói do personagem com moldura gótica, retrato carmesim e grid paperdoll de 5 slots de equipamento (Arma, Armadura, Elmo, Botas, Amuleto) com micro-interações táteis e iluminação suave ao passar o cursor.
-- MetropolePanel.ts: Banner cinematográfico com sobreposição em gradiente escuro e título ambientado sobre a chuva e névoa da cidade. Mapeamento de distritos e modularização de funções mantendo menos de 300 linhas por arquivo e menos de 60 linhas por função.
-- global.css: Animações de pulsação noturna (nightPulse) e tokens de glassmorphism gótico sem clichês de IA.
-
-
----
-### 📌 Decisão Arquitetural: ADR-009: Guerra de Bairros e Dividendos Semanais da Metrópole
-ADR-009: Guerra de Bairros (District Wars), Disputa Territorial e Dividendos Semanais da Metrópole.
-- packages/shared: Tipos DistrictId, DistrictState, DistrictContestResult, DistrictDividendResult e schemas Zod ContestDistrictSchema e ClaimDividendsSchema.
-- packages/server: Módulo districtEngine.ts com apuração de infâmia e dominância territorial para 4 distritos (Centro Financeiro, Zona Portuária, Catedral Histórica, Reserva dos Ermos); integração com livro de ordens de mercado alimentando o cofre semanal de dividendos com 5% de taxa; rotas /api/districts/status, /api/districts/contest e /api/districts/claim-dividends sob lock pessimista (SELECT ... FOR UPDATE) e registro imutável em financial_audit_ledger.
-- packages/server/tests/districts.test.ts: 6 novos testes unitários e de integração cobrindo disputas territoriais, bônus de infâmia com ouro, alimentação do pool de dividendos e restrição de facção dominante.
-- packages/client: MetropolePanel atualizado com controles táteis de disputa de distritos, botão de saque de dividendos e salvaguardas explícitas de lista vazia para conformidade total de UX defensiva.
-- Total acumulado de 34 testes automatizados (100% de aprovação).
-
-
----
-### 📌 Decisão Arquitetural: ADR-010: Taverna dos Renegados e Aluguel de Mercenários Offline
-ADR-010: Taverna dos Renegados (Aluguel de Mercenários Offline & Formação de Grupos para Masmorras).
-- packages/shared: Tipos MercenaryContract e schemas Zod RentMercenarySchema e RegisterMercenarySchema.
-- packages/server: Módulo mercenaryGuild.ts com liquidação de aluguel: comissão de 90% transferida diretamente para o baú do refúgio (vaultGold) do proprietário offline e taxa de 10% da Taverna (Gold Sink da economia); rotas /api/mercenaries/list, /api/mercenaries/register e /api/mercenaries/hire operando sob transações ACID com lock pessimista (SELECT ... FOR UPDATE) e registro imutável no financial_audit_ledger.
-- packages/server/tests/mercenaries.test.ts: 4 novos testes cobrindo listagem, split financeiro de comissão, registro de mercenário e prevenção de contratações concorrentes duplicadas.
-- packages/client: Novo componente TavernaPanel.ts com interface gótica, contratação tátil, aluguel do próprio personagem e salvaguarda defensiva contra listas vazias.
-- Total acumulado de 38 testes automatizados aprovados (100% de sucesso).
-
-
----
-### 📌 Decisão Arquitetural: ADR-011: Identidade Visual Imersiva de MMORPG Dark Fantasy (Game HUD, Paperdoll de Raridades e Altar de Linhagem)
-A interface de usuário foi completamente elevada do aspecto de HTML cru para uma estética autêntica de MMORPG Dark Fantasy:
-1. Game HUD Blindado: Medalhão metálico de nível, display tátil de Gold e Tokens da Noite, medidores vitais com reflexo vítreo e tipografia monoespacial.
-2. Altar do Personagem & Paperdoll RPG: Slots de equipamento com bordas de ferro forjado e glows de raridade (Mágico, Raro, Épico e Lendário).
-3. Árvore Híbrida como Altar Místico: Gemas de poder (Rubi, Safira, Sangue e Ametista) com medalhão central de atributos de combate derivados.
-4. Bestiário de Cripta & Forja: Cartazes de recompensas de chefes com requisitos de Carving anatômico e bigorna vulcânica.
-5. Guerra Territorial & Taverna: Barras bicolores de influência territorial (Vampiros vs Lycans) e contratos de mercenários offline.
-Todas as regras de conformidade visual do DiretorFrontendUI e restrições de concorrência do GuardiaoQASec foram rigorosamente mantidas.
-
-
----
-### 📌 Decisão Arquitetural: ADR-012: Sistema de Progressão Visual e Mecânica do Refúgio (Terreno Baldio ao Castelo Imperial)
-Contexto: O usuário requisitou a representação visual da evolução do refúgio partindo de um terreno baldio, passando por cabana velha até atingir um castelo gótico imperial.
-Decisão:
-1. Implementada a máquina de 5 estágios arquiteturais puros em @noite-faminta/shared: WASTELAND (Nível 1), CABIN (Níveis 2-3), CRYPT (Níveis 4-6), MANSION (Níveis 7-9) e CASTLE (Nível 10+).
-2. Criada galeria de assets vetoriais SVG góticos de alta fidelidade e identidade temática escura em /assets/.
-3. Rota autoritativa POST /hideout/upgrade no servidor com transação ACID, lock pessimista e auditoria financeira no ledger.
-4. Interface reativa com panorama cenográfico, track de marcos com badges visuais (current, completed, locked) e cálculo dinâmico de limites de cofre e stamina.
-5. Limite arquitetural estrito respeitado (todos os arquivos abaixo de 300 linhas).
-
-
----
-### 📌 Decisão Arquitetural: ADR-013: Câmaras do Santuário Gótico, Oráculo de Obras & Infraestrutura Modular de Produção
-**Contexto:** O jogador necessitava visualizar concretamente o que está erguendo no refúgio com atmosfera dark fantasy genuína, além da necessidade de consolidar a infraestrutura de produção em nuvem.
-**Decisão:**
-1. **Grelha de 6 Câmaras Góticas:** Implementadas câmaras temáticas em alvenaria evolutiva (*Trono & Sarcófago*, *Cofre das Catacumbas*, *Forja Ancestral*, *Círculo Ritual*, *Ameias de Gárgulas* e *Mausoléu de Servos*) com 6 ilustrações vetoriais SVG exclusivas.
-2. **Oráculo de Arquitetura (Inspeção de Obras):** Modal interativo que detalha o estágio atual vs. próxima evolução, ganhos de atributos, pips táteis de alvenaria e evolução física da construção.
-3. **Ambiente & Iluminação Cenográfica:** Alternância dinâmica de tochas e iluminação soturna no refúgio, reforçando a identidade estética do jogo.
-4. **Decomposição Modular do Frontend:** O `RefugioPanel.ts` foi decomposto em submódulos desacoplados (`RefugioChambers.ts`, `RefugioChamberModal.ts`, `RefugioPanorama.ts`, `RefugioArsenal.ts`, `RefugioGambits.ts`), garantindo estrita aderência ao teto de 300 linhas por arquivo de código.
-5. **Infraestrutura Terraform Modular de Produção:** Criação dos módulos desacoplados `modules/vpc`, `modules/security` e `modules/database`, além do ambiente `environments/prod` com RDS Multi-AZ, backup de 30 dias, subnets isoladas e auditoria DevSecOps 100% aprovada.
-6. **Entrega e Estabilidade:** 43 testes automatizados aprovados (100% de cobertura nos fluxos críticos).
-
+> Para consultar as decisões técnicas completas com código e histórico, acesse o compêndio em [docs/ADRS.md](file:///c:/Users/hados/.gemini/antigravity-ide/scratch/noite-faminta/docs/ADRS.md).

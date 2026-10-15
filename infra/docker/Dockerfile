@@ -11,10 +11,11 @@ WORKDIR /app
 # Instalar dependências necessárias para compilação nativa se houver
 RUN apk add --no-cache libc6-compat
 
-# Copiar manifestos de pacotes
-COPY package.json tsconfig.base.json ./
+# Copiar manifestos de pacotes do monorepo
+COPY package.json package-lock.json tsconfig.base.json ./
 COPY packages/shared/package.json ./packages/shared/
 COPY packages/server/package.json ./packages/server/
+COPY packages/client/package.json ./packages/client/
 
 # Instalação limpa de dependências
 RUN npm ci

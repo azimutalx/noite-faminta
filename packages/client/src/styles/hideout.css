@@ -255,41 +255,8 @@
   background: rgba(35, 25, 12, 0.6);
 }
 
-/* Banner de Notificação Ticker Gótico */
-.gothic-ticker-bar {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-2) var(--space-3);
-  border-radius: var(--radius-xs);
-  font-family: var(--font-family-mono);
-  font-size: 11px;
-  margin-bottom: var(--space-3);
-  border: 1px solid rgba(212, 214, 226, 0.12);
-  background: rgba(6, 6, 10, 0.85);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.8);
-}
-.gothic-ticker-bar.gold {
-  border-color: rgba(205, 163, 79, 0.4);
-  color: var(--color-gold-coin);
-  background: rgba(30, 22, 10, 0.85);
-}
-.gothic-ticker-bar.success {
-  border-color: rgba(105, 219, 124, 0.4);
-  color: #69db7c;
-  background: rgba(10, 24, 12, 0.85);
-}
-.gothic-ticker-bar.danger {
-  border-color: rgba(255, 107, 107, 0.4);
-  color: #ff8787;
-  background: rgba(30, 10, 12, 0.85);
-}
-.gothic-ticker-bar.info {
-  border-color: rgba(116, 192, 252, 0.3);
-  color: #74c0fc;
-}
-
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.97); }
   to { opacity: 1; transform: scale(1); }
 }
+
