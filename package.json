@@ -7,9 +7,10 @@
     "packages/*"
   ],
   "scripts": {
+    "prepare": "npm run build -w @noite-faminta/shared",
     "dev": "npm run dev --workspaces --if-present",
     "build": "npm run build --workspaces --if-present",
-    "typecheck": "npm run typecheck --workspaces --if-present",
+    "typecheck": "npm run build -w @noite-faminta/shared && npm run typecheck --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
     "test": "vitest run"
   },

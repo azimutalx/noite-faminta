@@ -21,7 +21,7 @@ resource "aws_secretsmanager_secret" "db_secret" {
 }
 
 resource "aws_secretsmanager_secret_version" "db_secret_val" {
-  secret_id = aws_secretsmanager_secret.db_secret.id
+  secret_id     = aws_secretsmanager_secret.db_secret.id
   secret_string = jsonencode({
     username = var.db_username
     password = random_password.db_password.result
@@ -56,10 +56,10 @@ module "security" {
 module "database" {
   source = "../../modules/database"
 
-  environment           = var.environment
-  db_name               = var.db_name
-  db_username           = var.db_username
-  db_password           = random_password.db_password.result
-  database_subnet_ids   = module.vpc.database_subnet_ids
-  db_security_group_id  = module.security.db_security_group_id
+  environment          = var.environment
+  db_name              = var.db_name
+  db_username          = var.db_username
+  db_password          = random_password.db_password.result
+  database_subnet_ids  = module.vpc.database_subnet_ids
+  db_security_group_id = module.security.db_security_group_id
 }
