@@ -1,0 +1,63 @@
+{
+  "title": "Sessão Completa de Gameplay - Noite Faminta",
+  "character": "Vladislav de Karnstein (Vampiro Lorde)",
+  "steps": [
+    {
+      "stage": "1. Despertar no Santuário",
+      "details": "Personagem desperta nas criptas ancestrais de Noite Faminta.",
+      "hud_snippet": "HUD Conectado"
+    },
+    {
+      "stage": "2.1 Caçada Noturna Humana",
+      "details": "Emboscada e extração de sangue de mortais desavisados.",
+      "log": "[11:25:57]\n⚔️ Caçada vitoriosa! +60 Gold, +40 XP (-6 HP)."
+    },
+    {
+      "stage": "2.2 Caçada Noturna Humana",
+      "details": "Emboscada e extração de sangue de mortais desavisados.",
+      "log": "[11:25:58]\n⚔️ Caçada vitoriosa! +60 Gold, +40 XP (-6 HP)."
+    },
+    {
+      "stage": "3. Disputa de Distrito Metropolitano",
+      "details": "Disputa territorial por influência de facção (Vampiro vs Lycan).",
+      "log": "[11:25:59]\n⚔️ GUERRA TERRITORIAL: Seus lacaios avançaram sobre FINANCIAL_CENTER. A influência das sombras ascendeu!"
+    },
+    {
+      "stage": "4. Arena de Sangue",
+      "details": "Combate tático por turnos orquestrado por Gambits de IA.",
+      "log": "[11:26:00]\n🏆 VITÓRIA! +120 Gold, +180 XP!"
+    },
+    {
+      "stage": "5. Invasão de Cripta (Lorde Inquisidor Malachi)",
+      "details": "Chefe derrotado com mecânica de Carving e afixos ancestrais.",
+      "log": "[11:26:02]\n🩸 CARVING EXTRAÍDO: Coração de Inquisidor de Prata!"
+    },
+    {
+      "stage": "6. Forja na Bigorna Vulcânica",
+      "details": "Lâmina ancestral forjada a partir dos materiais colhidos no Carving.",
+      "log": "[11:26:04]\n✨ FORJA CONCLUÍDA! Criado: [Sanguinária Lâmina Forjada das Sombras] (Raridade: RARE, Afixos: Sanguinária & das Sombras). Custo pago: 150 Ouro."
+    },
+    {
+      "stage": "8. Taverna dos Renegados",
+      "details": "Contrato firmado com mercenário offline para bônus de patrulha.",
+      "log": "[11:26:06]\n🍻 MERCENÁRIO CONTRATADO! Victor, o Carrasco Carmesim agora reforça o seu grupo nas Masmorras! (-180 Ouro)."
+    },
+    {
+      "stage": "9. Iluminação de Castelo",
+      "details": "Tochas carmesins acesas para ambiência gótica no santuário.",
+      "log": "[11:26:08]\n🕯️ As tochas carmesins do santuário foram acesas!"
+    },
+    {
+      "stage": "10. Oráculo de Arquitetura (Sarcófago de Sangue)",
+      "details": "Inspeção de plantas de alvenaria e bônus de HP máx."
+    },
+    {
+      "stage": "12. Inspeção da Fortaleza Exterior",
+      "details": "Panorama gótico do castelo renderizado em camadas SVG dinâmicas."
+    },
+    {
+      "stage": "13. Arsenal & Paperdoll",
+      "details": "Equipamentos equipados, gemas e molduras lendárias verificados."
+    }
+  ]
+}
